@@ -1,18 +1,15 @@
-// TODO(owner) Phase 8: story copy below (founding year, team size, project count, PRESS list) is template text, replace with true facts.
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
-import { MockUI } from "@/components/alvan/mock-ui";
+import { Button } from "@/components/alvan/button";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
-import { PRINCIPLES, TEAM } from "@/lib/alvan-data";
-const PRESS = [
-  "Nairobi Business Review",
-  "Founder Weekly Africa",
-  "East African Trade Journal",
-  "Commerce Report",
-  "Design Kenya",
-];
+import { PRINCIPLES } from "@/lib/alvan-data";
+
+// To show your real photo: put the file in /public (e.g. /public/alvan.webp) and set PORTRAIT = "/alvan.webp".
+// While it is null, a clean "AN" monogram is shown instead.
+const PORTRAIT = null;
+
 export default function About() {
   useHead(SEO["/about"]);
   return (
@@ -21,7 +18,7 @@ export default function About() {
         eyebrow="About"
         title={
           <>
-            AlvanInc is an independent studio building websites that{" "}
+            AlvanInc is a one-person studio in Nairobi building websites that{" "}
             <span className="text-brass">convert</span>, for African businesses who&apos;d rather
             look <span className="text-brass">credible</span> online than fight a template.
           </>
@@ -32,18 +29,20 @@ export default function About() {
         <div className="grid gap-10 border-t border-black/10 pt-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="text-base leading-relaxed text-black/70">
-              AlvanInc started in 2019 out of a simple frustration: business owners in Nairobi were
-              being quoted six figures and four months for a site that needed neither. The first
-              project was a one-page launch for a friend&apos;s coffee subscription, built in a week
-              for a fixed fee. It doubled her signups, and the model has not changed since.
+              I&apos;m Alvan Peter Nyakundi, the person behind AlvanInc. Because it&apos;s a
+              one-person studio, the person you brief on the first call is the person who designs,
+              builds, and launches your site. No account managers, no handoffs, and no waiting for a
+              message to travel between departments.
             </p>
           </Reveal>
           <Reveal delay={140}>
             <p className="text-base leading-relaxed text-black/70">
-              Six years on we are three people who have shipped over a hundred and twenty projects
-              across retail, fintech, property, and hospitality — across Kenya and beyond. We take a
-              small number of builds at a time so each one gets the whole studio, and we publish our
-              prices because arguing about a quote is nobody&apos;s idea of a good first meeting.
+              So far I&apos;ve shipped three live sites: Rommie, a place to find and compare student
+              rooms and hostels; Zuno Escrow, an escrow payment platform for online marketplace
+              deals; and Sharks Clinic, a clinic website with online appointment booking. I take on
+              a small number of projects at a time so each one gets my full attention, and I
+              publish my prices because arguing about a quote is nobody&apos;s idea of a good first
+              meeting.
             </p>
           </Reveal>
         </div>
@@ -67,44 +66,35 @@ export default function About() {
 
       <section className="surface-light px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
-          <Eyebrow>The studio</Eyebrow>
+          <Eyebrow>Who you&apos;ll work with</Eyebrow>
         </Reveal>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {TEAM.map((m, i) => (
-            <Reveal key={m.name} delay={i * 110}>
-              <article>
-                <div
-                  className="overflow-hidden rounded-2xl border border-black/10"
-                  style={{ aspectRatio: "4 / 5" }}
-                  role="img"
-                  aria-label={`Portrait of ${m.name}, ${m.role}`}
-                >
-                  <MockUI variant={m.variant} headline={m.name} className="h-full w-full" />
-                </div>
-                <h3 className="display-tight mt-6 text-2xl">{m.name}</h3>
-                <p className="label-mono mt-3 text-black/65">{m.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-black/65">{m.specialty}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="surface-light-deep px-5 py-20 sm:px-8 sm:py-24">
-        <Reveal className="text-center">
-          <p className="label-mono text-black/65">Written about in</p>
-        </Reveal>
-        <Reveal delay={120} className="mt-8">
-          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 sm:gap-x-16">
-            {PRESS.map((p) => (
-              <li
-                key={p}
-                className="display-tight text-lg tracking-tight text-black/65 transition-colors hover:text-black/85 sm:text-xl"
-              >
-                {p}
-              </li>
-            ))}
-          </ul>
+        <Reveal delay={110}>
+          <article className="mt-12 grid items-center gap-8 md:grid-cols-[18rem_minmax(0,1fr)] md:gap-14">
+            <div
+              className="flex items-center justify-center overflow-hidden rounded-2xl border border-black/10 bg-ink"
+              style={{ aspectRatio: "4 / 5" }}
+              role="img"
+              aria-label="Portrait of Alvan Peter Nyakundi, founder of AlvanInc"
+            >
+              {PORTRAIT ? (
+                <img src={PORTRAIT} alt="" className="h-full w-full object-cover" />
+              ) : (
+                <span className="display-tight text-7xl text-brass">AN</span>
+              )}
+            </div>
+            <div>
+              <h3 className="display-tight text-3xl sm:text-4xl">Alvan Peter Nyakundi</h3>
+              <p className="label-mono mt-3 text-black/65">Founder, designer &amp; developer</p>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-black/70">
+                I handle every step myself: the kickoff call, the design, the build, the launch, and
+                the thirty days of support after you go live. You always know who is working on
+                your site, and you can reach them directly on WhatsApp or email.
+              </p>
+              <Button to="/contact" tone="light" icon="arrow" className="mt-8">
+                Start a project
+              </Button>
+            </div>
+          </article>
         </Reveal>
       </section>
     </PageShell>
