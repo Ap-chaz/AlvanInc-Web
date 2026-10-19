@@ -12,23 +12,28 @@ const ART = {
       <text x="27" y="44" textAnchor="middle" fontSize="12" fill="currentColor" stroke="none" style={mono}>A</text>
       <text x="93" y="44" textAnchor="middle" fontSize="12" fill="currentColor" stroke="none" style={mono}>B</text>
       <path d="M40 39H80" strokeDasharray="2 4" />
-      <circle cx="60" cy="66" r="4" />
+      <circle className="la-slide" cx="40" cy="39" r="2.5" fill="currentColor" stroke="none" />
+      <circle className="la-pulse" cx="60" cy="66" r="4" />
     </>
   ),
   network: (
     <>
       <path d="M60 40L26 17M60 40L94 17M60 40L26 63M60 40L94 63" />
-      <circle cx="60" cy="40" r="9" fill="currentColor" />
-      <circle cx="22" cy="14" r="5" />
-      <circle cx="98" cy="14" r="5" />
-      <circle cx="22" cy="66" r="5" />
-      <circle cx="98" cy="66" r="5" />
+      <circle className="la-hub" cx="60" cy="40" r="9" fill="currentColor" />
+      <circle className="la-node la-d1" cx="22" cy="14" r="5" />
+      <circle className="la-node la-d2" cx="98" cy="14" r="5" />
+      <circle className="la-node la-d3" cx="98" cy="66" r="5" />
+      <circle className="la-node la-d4" cx="22" cy="66" r="5" />
     </>
   ),
   bars: (
     <>
       <rect x="28" y="8" width="64" height="64" rx="4" />
-      <path d="M40 22H80M40 32H76M40 42H70M40 52H64M40 62H56" strokeWidth="4" />
+      <path className="la-bar la-d0" d="M40 22H80" strokeWidth="4" />
+      <path className="la-bar la-d1" d="M40 32H76" strokeWidth="4" />
+      <path className="la-bar la-d2" d="M40 42H70" strokeWidth="4" />
+      <path className="la-bar la-d3" d="M40 52H64" strokeWidth="4" />
+      <path className="la-bar la-d4" d="M40 62H56" strokeWidth="4" />
     </>
   ),
   browser: (
@@ -39,22 +44,25 @@ const ART = {
       <circle cx="25" cy="19" r="1.5" fill="currentColor" />
       <circle cx="32" cy="19" r="1.5" fill="currentColor" />
       <rect x="20" y="34" width="36" height="26" rx="2" />
-      <path d="M64 38H100M64 46H100M64 54H88" />
+      <path className="la-line la-d0" d="M64 38H100" />
+      <path className="la-line la-d2" d="M64 46H100" />
+      <path className="la-line la-d4" d="M64 54H88" />
     </>
   ),
   flow: (
     <>
-      <rect x="6" y="28" width="26" height="24" rx="3" />
-      <rect x="47" y="28" width="26" height="24" rx="3" />
-      <rect x="88" y="28" width="26" height="24" rx="3" />
+      <rect className="la-box la-d0" x="6" y="28" width="26" height="24" rx="3" />
+      <rect className="la-box la-d2" x="47" y="28" width="26" height="24" rx="3" />
+      <rect className="la-box la-d4" x="88" y="28" width="26" height="24" rx="3" />
       <path d="M32 40H47M43 37L47 40L43 43M73 40H88M84 37L88 40L84 43" />
+      <circle className="la-travel" cx="19" cy="40" r="2.5" fill="currentColor" stroke="none" />
     </>
   ),
   layers: (
     <>
-      <path d="M60 10L100 26L60 42L20 26Z" />
-      <path d="M20 38L60 54L100 38" />
-      <path d="M20 50L60 66L100 50" />
+      <path className="la-float la-d2" d="M60 10L100 26L60 42L20 26Z" />
+      <path className="la-float la-d1" d="M20 38L60 54L100 38" />
+      <path className="la-float la-d0" d="M20 50L60 66L100 50" />
     </>
   ),
   device: (
@@ -98,7 +106,7 @@ function LineArt({ name, className, title }) {
       strokeLinejoin="round"
       role={title ? "img" : undefined}
       aria-hidden={title ? undefined : "true"}
-      className={cn("h-20 w-[7.5rem]", className)}
+      className={cn("la-anim h-20 w-[7.5rem]", className)}
     >
       {title ? <title>{title}</title> : null}
       {art}
