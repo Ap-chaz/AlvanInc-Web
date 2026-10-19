@@ -54,7 +54,7 @@ function ButtonRow({ tone }) {
 function Cell({ label, children, tone }) {
   return (
     <div className="p-8">
-      <p className={`label-code ${tone === "light" ? "text-black/50" : "text-graphite"}`}>{label}</p>
+      <p className={`label-code ${tone === "light" ? "text-black/65" : "text-graphite"}`}>{label}</p>
       <p className="type-h3 mt-6">{children}</p>
     </div>
   );
@@ -140,7 +140,7 @@ export default function Styleguide() {
             {LINE_ART_NAMES.map((n) => (
               <div key={n} className="flex flex-col items-start gap-3 text-black">
                 <LineArt name={n} />
-                <span className="label-code text-black/50">{n}</span>
+                <span className="label-code text-black/65">{n}</span>
               </div>
             ))}
           </div>

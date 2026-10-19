@@ -5,8 +5,6 @@ const PROJECTS = [
     name: "Tulia Coffee Co.",
     category: "E-commerce",
     summary: "Repeat-subscription coffee storefront in Nairobi — 3.2× checkout conversion.",
-    variant: "commerce",
-    headline: "Roasted this week, at your door on Friday.",
     tags: ["E-commerce", "Studio tier", "6 weeks"],
     brief:
       "Tulia sold excellent coffee through a template store that treated a subscription like an afterthought. Repeat orders were tracked on WhatsApp by hand, and the checkout lost roughly half of mobile buyers before M-Pesa payment.",
@@ -42,23 +40,6 @@ const PROJECTS = [
       name: "Dana Okwiri",
       role: "Founder, Tulia Coffee Co.",
     },
-    gallery: [
-      {
-        variant: "commerce",
-        headline: "Choose your blend.",
-        alt: "Tulia Coffee Co. product listing page",
-      },
-      {
-        variant: "editorial",
-        headline: "The Friday delivery.",
-        alt: "Tulia Coffee Co. subscription explainer page",
-      },
-      {
-        variant: "dashboard",
-        headline: "Manage your roast.",
-        alt: "Tulia Coffee Co. customer account dashboard",
-      },
-    ],
   },
   {
     slug: "kilimani-homes",
@@ -66,8 +47,6 @@ const PROJECTS = [
     name: "Kilimani Homes",
     category: "Real Estate",
     summary: "Listings platform for a boutique Nairobi brokerage — 41% more viewing requests.",
-    variant: "dashboard",
-    headline: "Live life in the right address.",
     tags: ["Real Estate", "Custom tier", "10 weeks"],
     brief:
       "Kilimani Homes listed forty properties across Nairobi and Mombasa in a spreadsheet-driven site nobody enjoyed using. Buyers messaged on WhatsApp to ask for details that were already on the page.",
@@ -94,23 +73,6 @@ const PROJECTS = [
       { label: "Time to publish", stat: "6 min", caption: "Average time to list a new property." },
       { label: "Bounce rate", stat: "-28%", caption: "On listing detail pages." },
     ],
-    gallery: [
-      {
-        variant: "dashboard",
-        headline: "Every listing, one view.",
-        alt: "Kilimani Homes listings index",
-      },
-      {
-        variant: "portfolio",
-        headline: "Book a viewing.",
-        alt: "Kilimani Homes viewing request flow",
-      },
-      {
-        variant: "editorial",
-        headline: "Neighbourhood notes.",
-        alt: "Kilimani Homes neighbourhood guide page",
-      },
-    ],
   },
   {
     slug: "amana-pay",
@@ -118,8 +80,6 @@ const PROJECTS = [
     name: "Amana Pay",
     category: "SaaS & Product",
     summary: "Fintech onboarding product — positioning, site, and interface system.",
-    variant: "editorial",
-    headline: "Onboard your customers in under a minute.",
     tags: ["SaaS & Product", "Custom tier", "8 weeks"],
     brief:
       "Amana had a working product and no way to explain it to businesses. The old site led with the technology and buried the outcome, and demo requests came almost entirely from existing referrals.",
@@ -147,15 +107,6 @@ const PROJECTS = [
       name: "Faith Karanja",
       role: "Co-founder, Amana Pay",
     },
-    gallery: [
-      { variant: "editorial", headline: "Hi, I'm Amana.", alt: "Amana Pay home page hero" },
-      {
-        variant: "dashboard",
-        headline: "Onboarding, finished.",
-        alt: "Amana Pay product interface",
-      },
-      { variant: "portfolio", headline: "Built for teams.", alt: "Amana Pay pricing page" },
-    ],
   },
   {
     slug: "baze-nights",
@@ -163,8 +114,6 @@ const PROJECTS = [
     name: "Baze Nights",
     category: "Brand & Marketing",
     summary: "Independent Nairobi music series — 2,100 tickets sold in the first month.",
-    variant: "music",
-    headline: "Enter the sound.",
     tags: ["Brand & Marketing", "Launch tier", "5 days"],
     brief:
       "A new Westlands club night needed an identity and a single page that could sell tickets before the first event, with a launch date already fixed.",
@@ -187,11 +136,6 @@ const PROJECTS = [
       { label: "Build time", stat: "5 days", caption: "Brief to live site." },
       { label: "Sell-through", stat: "94%", caption: "Of capacity across the opening season." },
     ],
-    gallery: [
-      { variant: "music", headline: "Enter the sound.", alt: "Baze Nights landing page" },
-      { variant: "editorial", headline: "The line-up.", alt: "Baze Nights line-up section" },
-      { variant: "commerce", headline: "Get tickets.", alt: "Baze Nights ticket checkout" },
-    ],
   },
   {
     slug: "studio-boma",
@@ -199,8 +143,6 @@ const PROJECTS = [
     name: "Studio Boma",
     category: "Brand & Marketing",
     summary: "Architecture practice portfolio — case studies that win commissions.",
-    variant: "portfolio",
-    headline: "We bring imagination to life.",
     tags: ["Brand & Marketing", "Studio tier", "6 weeks"],
     brief:
       "Boma's work was strong and their site showed it as a grid of thumbnails with no story. Prospective clients could not tell what a project cost or how long it took.",
@@ -223,15 +165,6 @@ const PROJECTS = [
       { label: "Pages per visit", stat: "4.6", caption: "Average across new visitors." },
       { label: "Publish time", stat: "1 day", caption: "For a full new case study." },
     ],
-    gallery: [
-      {
-        variant: "portfolio",
-        headline: "We bring imagination to life.",
-        alt: "Studio Boma home page",
-      },
-      { variant: "editorial", headline: "Harbour House.", alt: "Studio Boma project case study" },
-      { variant: "dashboard", headline: "The practice.", alt: "Studio Boma about page" },
-    ],
   },
   {
     slug: "kilele-advocates",
@@ -239,8 +172,6 @@ const PROJECTS = [
     name: "Kilele Advocates",
     category: "Brand & Marketing",
     summary: "Boutique Nairobi law firm site — consultations booked without a phone call.",
-    variant: "editorial",
-    headline: "Advice you can act on.",
     tags: ["Professional services", "Studio tier", "5 weeks"],
     brief:
       "Kilele's clients wanted to know whether the firm handled their situation and what a first meeting cost. Neither answer was on the old site.",
@@ -263,23 +194,6 @@ const PROJECTS = [
       { label: "Phone triage", stat: "-60%", caption: "Fewer unqualified intake calls." },
       { label: "Launch", stat: "5 wks", caption: "From kickoff to live." },
     ],
-    gallery: [
-      {
-        variant: "editorial",
-        headline: "Advice you can act on.",
-        alt: "Kilele Advocates home page",
-      },
-      {
-        variant: "portfolio",
-        headline: "Practice areas.",
-        alt: "Kilele Advocates practice areas page",
-      },
-      {
-        variant: "dashboard",
-        headline: "Book a consultation.",
-        alt: "Kilele Advocates booking flow",
-      },
-    ],
   },
   {
     slug: "jikoni-kitchen",
@@ -287,8 +201,6 @@ const PROJECTS = [
     name: "Jikoni Kitchen",
     category: "E-commerce",
     summary: "Neighbourhood Nairobi restaurant — reservations up 48% off a single page.",
-    variant: "commerce",
-    headline: "Dinner, five nights a week.",
     tags: ["Hospitality", "Launch tier", "5 days"],
     brief:
       "Jikoni was fully booked by word of mouth on weekends and quiet midweek. They needed a page that made a Tuesday table feel like a plan, bookable straight from Instagram.",
@@ -311,15 +223,6 @@ const PROJECTS = [
       { label: "Mobile share", stat: "86%", caption: "Of all bookings made on a phone." },
       { label: "Build time", stat: "5 days", caption: "Brief to live." },
     ],
-    gallery: [
-      {
-        variant: "commerce",
-        headline: "Dinner, five nights a week.",
-        alt: "Jikoni Kitchen home page",
-      },
-      { variant: "editorial", headline: "This week's menu.", alt: "Jikoni Kitchen menu page" },
-      { variant: "portfolio", headline: "Book a table.", alt: "Jikoni Kitchen reservation screen" },
-    ],
   },
   {
     slug: "nguvu-fitness",
@@ -327,8 +230,6 @@ const PROJECTS = [
     name: "Nguvu Fitness",
     category: "SaaS & Product",
     summary: "Coaching platform — member signups doubled after the rebuild.",
-    variant: "dashboard",
-    headline: "Train the plan, not the mood.",
     tags: ["Fitness", "Custom tier", "9 weeks"],
     brief:
       "Nguvu ran coaching over spreadsheets and an M-Pesa paybill number. Members churned because progress was invisible between sessions.",
@@ -351,19 +252,6 @@ const PROJECTS = [
       { label: "Churn", stat: "-31%", caption: "Monthly member churn." },
       { label: "Admin time", stat: "-6 hrs", caption: "Saved per coach, per week." },
     ],
-    gallery: [
-      { variant: "dashboard", headline: "Train the plan.", alt: "Nguvu Fitness member dashboard" },
-      {
-        variant: "portfolio",
-        headline: "Your block, week 3.",
-        alt: "Nguvu Fitness programme view",
-      },
-      {
-        variant: "commerce",
-        headline: "Choose a membership.",
-        alt: "Nguvu Fitness membership pricing",
-      },
-    ],
   },
   {
     slug: "tumaini-trust",
@@ -371,8 +259,6 @@ const PROJECTS = [
     name: "Tumaini Trust",
     category: "Brand & Marketing",
     summary: "NGO rebuild — recurring donations up 2.4× year on year.",
-    variant: "portfolio",
-    headline: "Small gifts, compounding.",
     tags: ["Nonprofit", "Studio tier", "6 weeks"],
     brief:
       "Tumaini's donation page asked for a one-off M-Pesa amount and told donors nothing about where it went. Recurring giving was under a tenth of revenue.",
@@ -403,15 +289,6 @@ const PROJECTS = [
         caption: "Twelve-month retention on monthly gifts.",
       },
     ],
-    gallery: [
-      {
-        variant: "portfolio",
-        headline: "Small gifts, compounding.",
-        alt: "Tumaini Trust home page",
-      },
-      { variant: "commerce", headline: "Give monthly.", alt: "Tumaini Trust donation flow" },
-      { variant: "editorial", headline: "Where it goes.", alt: "Tumaini Trust impact report page" },
-    ],
   },
   {
     slug: "kaskazi-logistics",
@@ -419,8 +296,6 @@ const PROJECTS = [
     name: "Kaskazi Logistics",
     category: "SaaS & Product",
     summary: "Cross-border logistics quoting tool — quotes returned in seconds, not a day.",
-    variant: "editorial",
-    headline: "Price the load before you take the call.",
     tags: ["SaaS & Product", "Custom tier", "11 weeks"],
     brief:
       "Kaskazi quoted freight by email and WhatsApp. Customers waited a day, and half of them booked with whoever answered first — often a competitor across the border.",
@@ -440,15 +315,6 @@ const PROJECTS = [
       { label: "Win rate", stat: "+29%", caption: "On inbound quote requests." },
       { label: "Manual quotes", stat: "-74%", caption: "Handled by the operations team." },
     ],
-    gallery: [
-      { variant: "editorial", headline: "Price the load.", alt: "Kaskazi Logistics quoting hero" },
-      {
-        variant: "dashboard",
-        headline: "Dispatch queue.",
-        alt: "Kaskazi Logistics operations dashboard",
-      },
-      { variant: "portfolio", headline: "Lanes we run.", alt: "Kaskazi Logistics coverage page" },
-    ],
   },
   {
     slug: "rommie",
@@ -457,8 +323,6 @@ const PROJECTS = [
     category: "E-commerce",
     summary:
       "Student rooms and hostels marketplace in Nairobi, with listings, an admin panel and simple sign-in.",
-    variant: "commerce",
-    headline: "Find a room near your school.",
     tags: ["E-commerce", "Web app"],
     // TODO(owner): add a timeline tag, results and a quote once you have real ones.
     brief:
@@ -478,7 +342,6 @@ const PROJECTS = [
       },
     ],
     results: [],
-    gallery: [],
   },
   {
     slug: "zuno",
@@ -487,9 +350,6 @@ const PROJECTS = [
     category: "SaaS & Product",
     summary:
       "Escrow payment platform for online marketplace deals — funds held until delivery is confirmed.",
-    variant: "dashboard",
-    headline: "Every transaction, secured.",
-    image: "/zuno-hero.webp",
     tags: ["SaaS & Product", "4 months"],
     brief:
       "ZUNO needed to make an abstract idea — a neutral third party holding a payment until both sides are satisfied — feel simple enough that a first-time buyer would trust it in seconds, not after reading a terms page.",
@@ -507,26 +367,6 @@ const PROJECTS = [
         body: "A near-black background with a single amber accent keeps the focus on the two things that matter: the promise, and the action.",
       },
     ],
-    gallery: [
-      {
-        variant: "dashboard",
-        headline: "Every transaction, secured.",
-        alt: "ZUNO landing page",
-        image: "/zuno-escrow-confirmed.webp",
-      },
-      {
-        variant: "editorial",
-        headline: "Funds locked until delivery.",
-        alt: "ZUNO escrow explainer",
-        image: "/zuno-tracking.webp",
-      },
-      {
-        variant: "portfolio",
-        headline: "Verified sellers only.",
-        alt: "ZUNO seller verification",
-        image: "/zuno-sellers.webp",
-      },
-    ],
   },
   {
     slug: "sharks-clinic",
@@ -537,9 +377,6 @@ const PROJECTS = [
     category: "Brand & Marketing",
     summary:
       "Healthcare marketing site with online booking — 10K+ patients served, 98% satisfaction.",
-    variant: "editorial",
-    headline: "Your health, our priority.",
-    image: "/sharks-clinic-hero.webp",
     tags: ["Brand & Marketing", "3 weeks"],
     brief:
       "Sharks Clinic needed a site that could carry the weight of a healthcare decision — clear service departments, a straightforward way to book, and enough real patient trust signals that a first-time visitor felt comfortable choosing them over a name they already knew.",
@@ -567,26 +404,6 @@ const PROJECTS = [
       name: "Collins King'oina",
       role: "Patient, Sharks Clinic",
     },
-    gallery: [
-      {
-        variant: "editorial",
-        headline: "Your health, our priority.",
-        alt: "Sharks Clinic home page",
-        image: "/sharks-clinic-gallery-1.webp",
-      },
-      {
-        variant: "portfolio",
-        headline: "Departments.",
-        alt: "Sharks Clinic services page",
-        image: "/sharks-clinic-gallery-2.webp",
-      },
-      {
-        variant: "dashboard",
-        headline: "Book an appointment.",
-        alt: "Sharks Clinic appointment booking",
-        image: "/sharks-clinic-gallery-3.webp",
-      },
-    ],
   },
 ];
 const CATEGORIES = ["All", "E-commerce", "SaaS & Product", "Real Estate", "Brand & Marketing"];

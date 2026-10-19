@@ -10,11 +10,11 @@ const ROW =
 function Row({ s, i }) {
   const body = (
     <>
-      <span className="label-code text-black/50">{String(i + 1).padStart(2, "0")}</span>
+      <span className="label-code text-black/65">{String(i + 1).padStart(2, "0")}</span>
       <span className="min-w-0">
         <span className="display-tight block text-4xl sm:text-5xl">{s.name}</span>
         <span className="mt-3 block max-w-lg text-sm leading-relaxed text-black/65">{s.blurb}</span>
-        {s.url ? <span className="label-code mt-3 block text-black/50">{host(s.url)}</span> : null}
+        {s.url ? <span className="label-code mt-3 block text-black/65">{host(s.url)}</span> : null}
       </span>
     </>
   );
@@ -24,7 +24,7 @@ function Row({ s, i }) {
     return (
       <div className={ROW}>
         {body}
-        <span className="label-code text-black/40">Link coming soon</span>
+        <span className="label-code text-black/65">Link coming soon</span>
       </div>
     );
   }

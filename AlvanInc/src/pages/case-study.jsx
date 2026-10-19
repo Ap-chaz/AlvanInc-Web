@@ -6,6 +6,7 @@ import { ViewSiteLink } from "@/components/alvan/view-site";
 import { PROJECTS } from "@/lib/alvan-data";
 import NotFound from "@/pages/not-found";
 import { useHead } from "@/lib/use-head";
+import { projectSeo } from "@/lib/seo";
 
 export default function CaseStudyPage() {
   const { slug } = useParams();
@@ -15,11 +16,7 @@ export default function CaseStudyPage() {
 }
 
 function CaseStudy({ project }) {
-  useHead({
-    title: `${project.name} — AlvanInc case study`,
-    description: project.summary,
-    type: "article",
-  });
+  useHead(projectSeo(project));
   const index = PROJECTS.findIndex((p) => p.slug === project.slug);
   const next = PROJECTS[(index + 1) % PROJECTS.length];
   return (
@@ -34,7 +31,7 @@ function CaseStudy({ project }) {
           </h1>
         </Reveal>
         <Reveal delay={190} className="mt-8">
-          <p className="max-w-xl text-base leading-relaxed text-black/60">{project.summary}</p>
+          <p className="max-w-xl text-base leading-relaxed text-black/65">{project.summary}</p>
         </Reveal>
         <Reveal delay={260} className="mt-8">
           <div className="flex flex-wrap gap-2">
@@ -67,7 +64,7 @@ function CaseStudy({ project }) {
           <div className="max-w-2xl space-y-10">
             {project.approach.map((a, i) => (
               <Reveal key={a.title} delay={100 + i * 90}>
-                <h3 className="label-mono text-black/50">{a.title}</h3>
+                <h3 className="label-mono text-black/65">{a.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-black/70">{a.body}</p>
               </Reveal>
             ))}
@@ -97,7 +94,7 @@ function CaseStudy({ project }) {
                 <p className="display-tight text-[1.75rem] leading-[1.15] sm:text-4xl">
                   “{project.quote.text}”
                 </p>
-                <footer className="label-mono mt-8 text-black/50">
+                <footer className="label-mono mt-8 text-black/65">
                   {project.quote.name} — {project.quote.role}
                 </footer>
               </blockquote>

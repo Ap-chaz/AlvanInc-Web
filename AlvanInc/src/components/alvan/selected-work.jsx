@@ -41,7 +41,7 @@ function SelectedWork() {
                 aria-label={`${p.name} case study`}
                 className="absolute inset-0 rounded-3xl"
               />
-              <span className="label-code text-black/50">{p.category}</span>
+              <span className="label-code text-black/65">{p.category}</span>
               <span>
                 <span className="display-tight block text-4xl">{p.name}</span>
                 <span className="mt-4 block max-w-xs text-sm leading-relaxed text-black/65">

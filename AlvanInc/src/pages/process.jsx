@@ -1,12 +1,10 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { ProcessSteps } from "@/components/alvan/process-steps";
 import { CLIENT_INPUTS } from "@/lib/alvan-data";
-const title = "How it works — the AlvanInc process";
-const description =
-  "Four steps, no surprises: Discover, Design, Build, Launch. The week-by-week schedule for a Studio-tier project and exactly what we need from you.";
 const WEEKS = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"];
 const BARS = [
   { name: "Discover", start: 0, span: 1 },
@@ -15,7 +13,7 @@ const BARS = [
   { name: "Launch", start: 5, span: 1 },
 ];
 export default function Process() {
-  useHead({ title, description });
+  useHead(SEO["/process"]);
   return (
     <PageShell>
       <PageHeader
@@ -45,7 +43,7 @@ export default function Process() {
           <div className="min-w-[40rem]">
             <div className="grid grid-cols-6 gap-2">
               {WEEKS.map((w) => (
-                <span key={w} className="label-mono text-black/40">
+                <span key={w} className="label-mono text-black/65">
                   {w}
                 </span>
               ))}

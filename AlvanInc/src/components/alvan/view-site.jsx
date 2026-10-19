@@ -25,14 +25,14 @@ function ViewSiteLink({
       <span
         className={cn(
           "label-display inline-flex items-center justify-center rounded-full border px-6 py-3.5",
-          dark ? "border-white/15 text-graphite" : "border-black/15 text-black/40",
+          dark ? "border-white/15 text-graphite" : "border-black/15 text-black/65",
           className,
         )}
       >
         Live site coming soon
       </span>
     ) : (
-      <span className={cn("label-code", dark ? "text-graphite" : "text-black/40", className)}>
+      <span className={cn("label-code", dark ? "text-graphite" : "text-black/65", className)}>
         Link coming soon
       </span>
     );

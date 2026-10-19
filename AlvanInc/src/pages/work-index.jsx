@@ -1,11 +1,9 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { useState } from "react";
 import { PageShell } from "@/components/alvan/page-shell";
 import { PageHeader, ProjectCard } from "@/components/alvan/ui";
 import { CATEGORIES, PROJECTS } from "@/lib/alvan-data";
-const title = "Selected work — AlvanInc";
-const description =
-  "Shipped projects across e-commerce, SaaS, and brand — each one opens into a full case study.";
 
 // Template projects (placeholder: true) stay hidden until replaced with real work.
 const SHOW_PLACEHOLDERS = false;
@@ -13,7 +11,7 @@ const visible = PROJECTS.filter((p) => SHOW_PLACEHOLDERS || !p.placeholder);
 const categories = CATEGORIES.filter((c) => c === "All" || visible.some((p) => p.category === c));
 
 export default function WorkIndex() {
-  useHead({ title, description });
+  useHead(SEO["/work"]);
   const [filter, setFilter] = useState("All");
   const shown = filter === "All" ? visible : visible.filter((p) => p.category === filter);
   return (
@@ -41,7 +39,7 @@ export default function WorkIndex() {
               type="button"
               aria-pressed={filter === c}
               onClick={() => setFilter(c)}
-              className={`label-display rounded-full border px-4 py-2.5 transition-colors ${filter === c ? "border-transparent bg-ink text-bone" : "border-black/15 text-black/60 hover:border-black/40 hover:text-black"}`}
+              className={`label-display rounded-full border px-4 py-2.5 transition-colors ${filter === c ? "border-transparent bg-ink text-bone" : "border-black/15 text-black/65 hover:border-black/40 hover:text-black"}`}
             >
               {c}
             </button>

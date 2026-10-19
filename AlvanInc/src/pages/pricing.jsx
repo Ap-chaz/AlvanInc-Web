@@ -1,12 +1,10 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { Link } from "react-router-dom";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { PageHeader, Eyebrow, Tag, BrassButton, GhostButton } from "@/components/alvan/ui";
 import { TIERS } from "@/lib/alvan-data";
-const title = "Pricing — fixed-price websites from KES 45,000 | AlvanInc";
-const description =
-  "Three fixed packages: Launch from KES 45,000, Studio from KES 150,000, and Custom scoped after a call. What's included, what isn't, and how M-Pesa payment works.";
 const PRICING_FAQ = [
   {
     q: "What's not included?",
@@ -22,7 +20,7 @@ const PRICING_FAQ = [
   },
 ];
 export default function Pricing() {
-  useHead({ title, description });
+  useHead(SEO["/pricing"]);
   return (
     <PageShell>
       <PageHeader
@@ -43,12 +41,12 @@ export default function Pricing() {
                 className={`flex h-full flex-col rounded-2xl border p-8 transition-all duration-[250ms] ease-out hover:-translate-y-1.5 ${t.featured ? "border-brass/60 bg-bone-deep" : "border-black/10 hover:border-black/30"}`}
               >
                 <div className="flex items-center justify-between gap-3">
-                  <p className="label-mono text-black/50">{t.name}</p>
+                  <p className="label-mono text-black/65">{t.name}</p>
                   {t.featured && <Tag>Most booked</Tag>}
                 </div>
                 <p className="display-tight mt-10 text-4xl sm:text-5xl">{t.price}</p>
-                {t.priceNote && <p className="label-mono mt-3 text-black/40">{t.priceNote}</p>}
-                <p className="mt-6 text-sm leading-relaxed text-black/60">{t.pitch}</p>
+                {t.priceNote && <p className="label-mono mt-3 text-black/65">{t.priceNote}</p>}
+                <p className="mt-6 text-sm leading-relaxed text-black/65">{t.pitch}</p>
 
                 <ul className="mt-8 space-y-3 border-t border-black/10 pt-8">
                   {t.features.map((f) => (
@@ -78,7 +76,7 @@ export default function Pricing() {
         </div>
 
         <Reveal delay={200} className="mt-14">
-          <p className="max-w-2xl text-base leading-relaxed text-black/60">
+          <p className="max-w-2xl text-base leading-relaxed text-black/65">
             Not sure which one? Launch fits a single offer or event. Studio fits an ongoing business
             with more than one thing to say. Custom fits anything with logins, M-Pesa or card
             payments, or a database.

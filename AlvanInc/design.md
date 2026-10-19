@@ -114,7 +114,7 @@ Next.js (App Router, `next/image`), canonical + full OG/Twitter meta with a 1200
 | Hero pixel ring | `<canvas>` component, rAF, pauses off-screen and under `prefers-reduced-motion` | Performance |
 | Images | Build-time pipeline → AVIF/WebP + multiple widths + blur placeholders | The site is photo-heavy |
 | Theme | **DECIDED by owner (2026-10-18): keep the current dark-dominant look.** Ink is the default surface; bone (light) sections are the contrast bands. This is the *inverse* of the reference (light page, dark bands). Wherever the reference uses a dark band, use a bone band here, and vice-versa. | Owner preference; brand unchanged |
-| Image build | `sharp` (devDependency, added Phase 6) | Reliable AVIF/WebP resizing in Node; runs at authoring time, not in the shipped bundle |
+| Image build | ~~`sharp`~~ **removed 2026-10-19** | The site no longer shows photos; the pipeline, `sharp` and the photo components were deleted. If photos return, rebuild it (see Phase 6 notes) |
 | CMS | None yet. Data stays in `src/lib/*.js` | Revisit if owner wants self-editing |
 
 **Theme/button mapping on brand tokens (implemented in `components/alvan/button.jsx`):** on ink surfaces → primary button = **brass pill**; on bone surfaces → primary = **ink pill** (hover brass); secondary = outlined pill on both. `tone="dark"|"light"` describes the *surface* the button sits on.
@@ -146,11 +146,11 @@ public/                   webp/jpg images, logos/, sitemap.xml, robots.txt, _red
 
 ### Known issues inherited (fix in the phase noted)
 1. Contact form **does not submit anything** (`setSent(true)` only) → Phase 9
-2. `sitemap.xml` points at `alvan-crafted-sites.lovable.app`; `robots.txt` has no Sitemap line → Phase 10
-3. No `og:image`, no canonical → Phase 10
+2. ~~`sitemap.xml` points at `alvan-crafted-sites.lovable.app`; `robots.txt` has no Sitemap line~~ **fixed 2026-10-19**: both are generated at build
+3. ~~No `og:image`, no canonical~~ **fixed 2026-10-19** (`src/lib/seo.js`, prerender)
 4. Brand leftovers: "PrimeWeb", `studio@alvanstudios.co.ke`, "Est. 2019", slugs that don't match names (`northside-roasters` = "Tulia Coffee Co.", `ledger-and-co` = "Kilimani Homes") → Phase 0
 5. Several case studies use `MockUI` placeholders and what looks like template testimonials/stats → replace with owner's real work (Phase 6) or remove
-6. Fonts loaded from two CDNs → self-host (Phase 10)
+6. Fonts loaded from two CDNs → `npm run fonts` is ready, **still to be run once** (Phase 10)
 7. Cookie bar's Accept/Decline do the same thing → Phase 2
 8. Duplicate `.jpg` files in `public/` alongside `.webp` → Phase 6 clean-up
 9. Cursor ring re-renders on every mousemove → rewrite with a ref + `transform` (Phase 2)
@@ -173,6 +173,8 @@ src/
 scripts/           optimize-images.mjs
 public/            optimized images, og image, fonts (self-hosted)
 ```
+
+> **Update 2026-10-19:** `components/media/` (ResponsiveImage, Gallery, Lightbox), `scripts/optimize-images.mjs`, `assets-src/`, `public/img/` and `src/data/image-manifest.json` no longer exist. `work.jsx` became `pricing-teaser.jsx` (the tilted/paired/split showcases were removed).
 
 Conventions:
 - Colours **only** via tokens (`bg-ink`, `text-brass`…). No hard-coded hex in components.
@@ -231,7 +233,7 @@ Each phase ends with a **Definition of done**. Do not start a phase until the pr
 
 ### Phase 2 — Global chrome  *(code complete; unverified in a browser)*
 - [x] **Floating pill navbar** (`chrome.jsx`): inset from the edges, blurred, fixed; condenses and darkens after 24px scroll; active link in brass (`NavLink`); primary links Work/Services/Pricing/Process/About, quiet "Contact" link, brass "Start a project" pill (`Button size="sm"`)
-- [x] **Mobile menu**: full-screen dialog (`role="dialog"`, `aria-modal`), numbered links with staggered `rise-in`, closes on Escape / route change, locks body scroll, moves focus in and returns it to the trigger. *Not a full focus trap yet (Phase 10 a11y).*
+- [x] **Mobile menu**: full-screen dialog (`role="dialog"`, `aria-modal`), numbered links with staggered `rise-in`, closes on Escape / route change, locks body scroll, moves focus in and returns it to the trigger. *Focus trap added 2026-10-19.*
 - [x] **Footer** (`site-footer.jsx`): CTA band (+ WhatsApp button), wordmark + tagline + socials, columns Work (real projects only, `placeholder` filtered out) / Studio / Contact, bottom bar with © and green pulsing status dot + city
 - [x] **Cookie bar**: Accept → `"accepted"`, Decline → `"declined"` (`lib/consent.js`, `getConsent()` for future analytics gating)
 - [x] **Cursor ring** rewritten: DOM updates via ref + rAF easing, zero React re-renders; fine-pointer devices only; no easing under reduced motion
@@ -266,7 +268,7 @@ Each phase ends with a **Definition of done**. Do not start a phase until the pr
 - [x] Reduced motion: all steps stacked, no animation
 **Done when:** steps change by themselves and stay in sync with the editor. ✅ (timed in headless Chromium, loops)
 
-### Phase 6 — Photo-heavy work system *(the owner's main need)*
+### Phase 6 — Photo-heavy work system *(SUPERSEDED 2026-10-19: all photo code and assets were removed; kept below for history)*
 - [x] **Intake:** originals live in `assets-src/<project>/` (the 12 existing project photos moved there)
 - [x] `scripts/optimize-images.mjs` (`npm run images`): AVIF + WebP at 480/768/1200/1920 (never upscaled), blur placeholder, dominant colour → `public/img/` and `src/data/image-manifest.json`. Warns if a 1200 px WebP > 250 KB. Currently 1.7 MB for all 12 photos.
 - [x] `ResponsiveImage` (`components/media/`): `<picture>` AVIF/WebP + srcset, aspect-ratio, blur-up fade-in, lazy (eager + high priority for the case-study hero). Looks images up by file name, so data files still say `/zuno-hero.webp`.
@@ -306,16 +308,20 @@ Each phase ends with a **Definition of done**. Do not start a phase until the pr
 - [ ] Optional, not built: `?type=` pre-selection, `/consultation` booking embed
 **Done when:** a test submission arrives in the owner's inbox.
 
-### Phase 10 — SEO, performance, accessibility, launch
-- [ ] Static prerender of all routes; per-route `<title>`, description, canonical, OG/Twitter incl. **1200×630 `og:image`**
-- [ ] JSON-LD (`Organization`/`Person`, `CreativeWork` for case studies)
-- [ ] Rebuild `sitemap.xml` + `robots.txt` with the **real domain**
-- [ ] Self-host Satoshi + Plex Mono (`font-display: swap`, preload the primary weight)
-- [ ] Route-level code splitting (`React.lazy`)
-- [ ] A11y audit: contrast on brass/bone, focus order, `aria-live` on rotators, alt text, reduced motion
-- [ ] Lighthouse ≥ 90 on all four categories (mobile)
-- [ ] Deploy (Vercel `vercel.json` / Netlify `_redirects` already present); connect domain
-**Done when:** link previews render correctly on WhatsApp, LinkedIn and X, and Lighthouse targets are met.
+### Phase 10 — SEO, performance, accessibility, launch  *(code complete; see what is left)*
+- [x] **Link previews / prerender:** `scripts/prerender.mjs` runs after `vite build` and writes static HTML for all 11 routes (8 pages + the 3 real case studies) with title, description, robots, canonical, Open Graph, Twitter and JSON-LD, plus a `<noscript>` fallback. All tag data is in `src/lib/seo.js` and is shared with `useHead`, so static and live tags cannot drift. **This is head prerendering, not full SSR:** the body is still client-rendered. Tested against a stand-in `dist/` (one title and canonical per file, idempotent); **the real `vite build` has not been run** (no network in the authoring sandbox)
+- [x] **`og:image`:** `public/og-image.png`, 1200×630, 38 KB, brand colours. Drawn with a stand-in sans font because Satoshi was not available; replace with a Satoshi export when possible (same file name)
+- [x] **JSON-LD:** `ProfessionalService` + `WebSite` on home, `CreativeWork` on real case studies. Deliberately contains **no** phone, email or social links, because those are placeholders in `site.js`. Add them to `homeJsonLd()` when real
+- [x] **Sitemap + robots:** generated at build from the route list and `SITE.url` (the static files in `public/` were deleted). **TODO(owner): set the real domain in `SITE.url`**; it is still the placeholder `https://alvaninc.com`
+- [x] **Route-level code splitting:** every route except home is `React.lazy` in `App.jsx`; `ErrorBoundary` reloads once if a chunk is missing after a redeploy
+- [~] **Self-host fonts:** `npm run fonts` (`scripts/fetch-fonts.mjs`) is written and its CSS parsing is unit-tested on provider-style fixtures, but **it has not been run** (needs internet). Until then the site uses the two CDNs. After running: build, check, commit `public/fonts/`, `src/fonts.css`, `index.html`
+- [x] **Contrast:** measured, not guessed. Brass on bone was 2.08:1 (bone-deep 1.85:1). Brass *text* on light surfaces now uses `--brass-deep` (5.79 / 5.16:1) through one scoped rule in `index.css` that skips dark cards nested in light sections (tested in Chromium). Faint grey text on light sections (`text-black/35|40|50|60`, 2.2 to 4.5:1) is now `text-black/65` (5.0+). Eyebrow index numerals are no longer faded; inactive Process steps are `opacity-55` (5.2:1 instead of 3.4:1). Brass on dark surfaces was already 6.8 to 7.7:1. **Visual effect on light sections is unreviewed: brass accents are now darker gold-brown there**
+- [x] **Mobile menu focus trap** (Tab/Shift+Tab wrap, recovers from outside; handler tested in Chromium)
+- [ ] A11y still open: focus order, heading outline per page, screen-reader pass. `/about` still contains invented copy (see Phase 8)
+- [ ] Lighthouse ≥ 90 on all four categories (mobile): **not run**
+- [ ] Deploy and connect domain
+- [x] **Browser check tooling:** `npm run qa` (`scripts/qa.mjs`, needs `npm i -D playwright`) visits every route at 375/768/1440, saves screenshots, reports console errors, overflow, h1/alt problems and sub-AA contrast on the real rendered text. Tested against a stub site with known defects. **It has not been run on the real site**
+**Done when:** link previews render correctly on WhatsApp, LinkedIn and X (check with a real deployed URL), and Lighthouse targets are met.
 
 ---
 
@@ -356,13 +362,13 @@ Each phase ends with a **Definition of done**. Do not start a phase until the pr
 | 3 | Hero & marquee | ✅ Closed: original hero kept by owner choice |
 | 4 | Home content sections | ✅ Done (screenshot-checked) |
 | 5 | Process (auto-advancing) | ✅ Done (timed and screenshot-checked) |
-| 6 | Photo-heavy work system | 🟨 Built; Lighthouse and real photos pending |
+| 6 | Photo-heavy work system | ⬛ Removed 2026-10-19 (owner: no photos; all photo code deleted) |
 | 7 | Social proof, journal, FAQ | 🟨 FAQ + testimonials built; testimonials need real quotes; logo wall/journal skipped |
 | 8 | Inner pages | ⬜ Not started |
 | 9 | Contact & conversion | 🟨 Built; needs `SITE.formEndpoint` + real contact details |
-| 10 | SEO, perf, a11y, launch | ⬜ Not started |
+| 10 | SEO, perf, a11y, launch | 🟨 Code done (prerender, JSON-LD, sitemap, lazy routes, contrast, focus trap); fonts script not run, Lighthouse/deploy pending |
 
-Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
+Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked · ⬛ removed
 
 ---
 
@@ -390,3 +396,4 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done · ⛔ blocked
 - **2026-10-19** · Claude · **Visual fixes after owner screenshot of `/process`.** (1) Navbar pill was `bg-ink/50` unscrolled, which read as muddy grey over light pages; now `bg-ink/90` (and `/95` scrolled), so it is a clean dark pill on every surface. (2) `ProcessSteps` with `showHeading={false}` kept full `py-36` top padding, leaving a large empty gap under the page header; now `pt-14 sm:pt-20` in that mode (home unchanged). Verified only by parse + Node server-render; **owner should re-check visually**. **Lesson:** translucent chrome must be judged over both ink and bone surfaces, and I cannot see rendered output in this sandbox, so ask for a screenshot after any layout change.
 
 - **2026-10-19** · Claude · **`/process` header now matches the section below.** `PageHeader` gained `tone="soft"` (background `bg-ink-soft`, same as `ProcessSteps`); `/process` uses it, so the header and the steps form one continuous dark band. Default tones unchanged. **Not run:** browser/build; owner should re-check visually.
+- **2026-10-19** · Claude · **Photo code removed; Phase 10 built.** *Removed:* `components/media/*` (ResponsiveImage, Gallery, Lightbox), unused `components/alvan/about.jsx` (KeyFacts with photos), the tilted/paired/split showcases (`work.jsx` is now `pricing-teaser.jsx`), `useScrollParallax`, `scripts/optimize-images.mjs`, `assets-src/`, `public/img/`, `image-manifest.json`, 4 unused root images and `public/logos/`, `image` / `gallery` / `variant` / `headline` fields on `PROJECTS` (data verified identical otherwise), and `sharp` plus the `images` script (lockfile pruned by reachability: only sharp's 28 entries went). *Added:* `src/lib/seo.js`, rewritten `use-head.js`, `scripts/prerender.mjs`, `public/og-image.png`, lazy routes, chunk-reload recovery, brass-deep contrast rule, grey-text fixes, mobile-menu focus trap, `scripts/fetch-fonts.mjs` + `src/fonts.css`, `scripts/qa.mjs`, new README. `sitemap.xml` and `robots.txt` are now generated (static copies deleted). **Verified here:** all 51 source files parse, every import and named export resolves, no orphan files; seo.js in Node (11 routes); prerender against a stand-in `dist/`; the contrast CSS rule and the focus-trap handler in real Chromium; font-CSS parser on fixtures; QA script on a stub site. **NOT verified:** `npm install`, `npm run build`, the running site, Tailwind output, Lighthouse, any real screenshot (no network in this sandbox). **Owner next:** run `npm install && npm run build`, then `npm run qa` and look at `qa-output/`; run `npm run fonts` once; set the real `SITE.url`, email, phone, WhatsApp and socials in `site.js`; confirm the Sharks Clinic stat in `PROJECTS[...].summary`, which now appears in its link-preview text and JSON-LD.

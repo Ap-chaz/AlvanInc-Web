@@ -9,7 +9,7 @@ function Eyebrow({ children, index, rule = true, className }) {
   return (
     <p className={cn("label-code text-brass", rule && "eyebrow-rule", className)}>
       <span>
-        {index ? <span className="opacity-60">{index} / </span> : null}
+        {index ? <span>{index} / </span> : null}
         {children}
       </span>
     </p>
@@ -36,7 +36,7 @@ function PageHeader({ eyebrow, title, intro, tone = "light" }) {
           <p
             className={cn(
               "max-w-xl text-base leading-relaxed",
-              tone === "light" ? "text-black/60" : "text-graphite",
+              tone === "light" ? "text-black/65" : "text-graphite",
             )}
           >
             {intro}
@@ -70,7 +70,7 @@ function Tag({ children, tone = "light" }) {
     <span
       className={cn(
         "label-mono rounded-full border px-3 py-1.5 text-[0.625rem]",
-        tone === "light" ? "border-black/15 text-black/60" : "border-white/15 text-graphite",
+        tone === "light" ? "border-black/15 text-black/65" : "border-white/15 text-graphite",
       )}
     >
       {children}
@@ -87,7 +87,7 @@ function ProjectCard({ project, delay = 0 }) {
           aria-label={`${project.name} case study`}
           className="absolute inset-0 rounded-3xl"
         />
-        <span className="label-code text-black/50">{project.category}</span>
+        <span className="label-code text-black/65">{project.category}</span>
         <span>
           <h3 className="display-tight text-3xl sm:text-5xl">{project.name}</h3>
           <p className="mt-4 max-w-md text-sm leading-relaxed text-black/65">{project.summary}</p>
@@ -118,7 +118,7 @@ function StatRow({ stats, tone = "light" }) {
               tone === "light" ? "border-black/10 bg-bone-deep" : "border-white/10 bg-ink-soft",
             )}
           >
-            <p className={cn("label-mono", tone === "light" ? "text-black/50" : "text-graphite")}>
+            <p className={cn("label-mono", tone === "light" ? "text-black/65" : "text-graphite")}>
               {s.label}
             </p>
             <p className="display-tight mt-8 text-5xl">
@@ -127,7 +127,7 @@ function StatRow({ stats, tone = "light" }) {
             <p
               className={cn(
                 "mt-4 text-xs leading-relaxed",
-                tone === "light" ? "text-black/60" : "text-graphite",
+                tone === "light" ? "text-black/65" : "text-graphite",
               )}
             >
               {s.caption}

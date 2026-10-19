@@ -1,13 +1,11 @@
 // TODO(owner) Phase 8: story copy below (founding year, team size, project count, PRESS list) is template text, replace with true facts.
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { MockUI } from "@/components/alvan/mock-ui";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { PRINCIPLES, TEAM } from "@/lib/alvan-data";
-const title = "About AlvanInc — an independent web studio in Nairobi";
-const description =
-  "AlvanInc is a studio in Nairobi building websites that convert, for founders who'd rather ship than fiddle with templates. Our story and principles.";
 const PRESS = [
   "Nairobi Business Review",
   "Founder Weekly Africa",
@@ -16,7 +14,7 @@ const PRESS = [
   "Design Kenya",
 ];
 export default function About() {
-  useHead({ title, description });
+  useHead(SEO["/about"]);
   return (
     <PageShell>
       <PageHeader
@@ -84,8 +82,8 @@ export default function About() {
                   <MockUI variant={m.variant} headline={m.name} className="h-full w-full" />
                 </div>
                 <h3 className="display-tight mt-6 text-2xl">{m.name}</h3>
-                <p className="label-mono mt-3 text-black/50">{m.role}</p>
-                <p className="mt-3 text-sm leading-relaxed text-black/60">{m.specialty}</p>
+                <p className="label-mono mt-3 text-black/65">{m.role}</p>
+                <p className="mt-3 text-sm leading-relaxed text-black/65">{m.specialty}</p>
               </article>
             </Reveal>
           ))}
@@ -94,14 +92,14 @@ export default function About() {
 
       <section className="surface-light-deep px-5 py-20 sm:px-8 sm:py-24">
         <Reveal className="text-center">
-          <p className="label-mono text-black/50">Written about in</p>
+          <p className="label-mono text-black/65">Written about in</p>
         </Reveal>
         <Reveal delay={120} className="mt-8">
           <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5 sm:gap-x-16">
             {PRESS.map((p) => (
               <li
                 key={p}
-                className="display-tight text-lg tracking-tight text-black/35 transition-colors hover:text-black/60 sm:text-xl"
+                className="display-tight text-lg tracking-tight text-black/65 transition-colors hover:text-black/85 sm:text-xl"
               >
                 {p}
               </li>

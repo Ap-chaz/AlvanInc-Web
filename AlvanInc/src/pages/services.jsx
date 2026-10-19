@@ -1,14 +1,12 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { Link } from "react-router-dom";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { SERVICES, ALWAYS_INCLUDED } from "@/lib/alvan-data";
-const title = "What we build — AlvanInc services";
-const description =
-  "Storefront, Studio, Launch, and Custom: four ways AlvanInc builds websites for founders, with what each one is for and where it starts.";
 export default function Services() {
-  useHead({ title, description });
+  useHead(SEO["/services"]);
   return (
     <PageShell>
       <PageHeader

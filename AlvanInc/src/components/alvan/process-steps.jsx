@@ -177,7 +177,7 @@ function AutoSteps() {
                     aria-label={`Step ${s.n}: ${s.name}`}
                     className={cn(
                       "block w-full text-left transition-opacity duration-500",
-                      isActive ? "opacity-100" : "opacity-40 hover:opacity-70",
+                      isActive ? "opacity-100" : "opacity-55 hover:opacity-80",
                     )}
                   >
                     <span className="label-code text-brass">{s.n}</span>

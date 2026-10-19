@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useHead } from "@/lib/use-head";
+import { NOT_FOUND_SEO } from "@/lib/seo";
 
 export default function NotFound() {
-  useHead({ title: "Page not found — AlvanInc" });
+  useHead(NOT_FOUND_SEO);
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">

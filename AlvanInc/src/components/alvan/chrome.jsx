@@ -31,6 +31,7 @@ function SiteNav() {
   const { pathname } = useLocation();
   const triggerRef = useRef(null);
   const closeRef = useRef(null);
+  const dialogRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -44,14 +45,33 @@ function SiteNav() {
     setOpen(false);
   }, [pathname]);
 
-  // While open: lock page scroll, close on Escape, move focus in and back out
+  // While open: lock page scroll, close on Escape, keep Tab inside the dialog, move focus in and back out
   useEffect(() => {
     if (!open) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      // Focus trap: Tab / Shift+Tab wrap around inside the dialog instead of reaching the page behind it
+      const dialog = dialogRef.current;
+      const nodes = dialog?.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (!nodes || nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      const active = document.activeElement;
+      const outside = !dialog.contains(active);
+      if (e.shiftKey && (active === first || outside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || outside)) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     const trigger = triggerRef.current;
@@ -111,6 +131,7 @@ function SiteNav() {
 
       {open && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"

@@ -19,7 +19,7 @@ function Capabilities() {
         {SERVICES.map((s, i) => (
           <Reveal as="li" key={s.name} delay={i * 80}>
             <div className="group grid items-center gap-6 border-b border-black/15 py-9 sm:py-11 md:grid-cols-[4.5rem_minmax(0,1fr)_9rem] md:gap-10 lg:grid-cols-[4.5rem_minmax(0,1fr)_auto]">
-              <span className="label-code text-black/50">{String(i + 1).padStart(2, "0")}</span>
+              <span className="label-code text-black/65">{String(i + 1).padStart(2, "0")}</span>
               <div className="min-w-0">
                 <h3 className="type-h2 text-[2rem] sm:text-5xl">{s.name}</h3>
                 <p className="mt-4 max-w-xl text-base leading-relaxed text-black/65">{s.body}</p>
