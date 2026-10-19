@@ -1,4 +1,4 @@
-import { Reveal } from "./reveal";
+﻿import { Reveal } from "./reveal";
 import { Button } from "./button";
 import { Eyebrow, Tag } from "./ui";
 import { ViewSiteLink } from "./view-site";
@@ -19,7 +19,7 @@ function Featured() {
       <div className="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
         <div>
           <Reveal delay={100}>
-            <h2 className="display-tight text-[3.5rem] leading-[0.95] sm:text-8xl">{p.name}</h2>
+            <h2 className="display-tight text-4xl leading-[1.02] sm:text-6xl lg:text-7xl">{p.name}</h2>
           </Reveal>
           <Reveal delay={180} className="mt-8">
             <p className="type-lead max-w-md text-bone/70">{p.summary}</p>
