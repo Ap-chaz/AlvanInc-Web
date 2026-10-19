@@ -12,7 +12,7 @@ export const whatsappLink = (text = WHATSAPP_TEXT) =>
 export const SITE = {
   name: "AlvanInc",
   tagline: "Websites and brands built for African founders.",
-  url: "https://alvaninc.com", // TODO(owner): real domain
+  url: "https://alvaninc.vercel.app", // TODO(owner): real domain
   email: "hello@alvaninc.com", // TODO(owner): real email
   phone: "+254 700 123 456", // TODO(owner): real phone
   phoneHref: "tel:+254700123456", // TODO(owner)
