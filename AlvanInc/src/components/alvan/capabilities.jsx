@@ -33,7 +33,7 @@ function Capabilities() {
               </div>
               <LineArt
                 name={ART[i % ART.length]}
-                className="hidden text-brass transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 md:block"
+                className="mt-2 h-32 w-48 justify-self-center text-brass transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 md:mt-0 md:h-20 md:w-[7.5rem] md:justify-self-auto"
               />
             </div>
           </Reveal>
