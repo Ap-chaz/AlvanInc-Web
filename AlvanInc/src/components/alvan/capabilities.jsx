@@ -18,7 +18,7 @@ function Capabilities() {
       <ol className="mt-12 border-t border-black/15 sm:mt-16">
         {SERVICES.map((s, i) => (
           <Reveal as="li" key={s.name} delay={i * 80}>
-            <div className="group grid items-center gap-6 border-b border-black/15 py-9 sm:py-11 md:grid-cols-[4.5rem_minmax(0,1fr)_9rem] md:gap-10 lg:grid-cols-[4.5rem_minmax(0,1fr)_auto]">
+            <div className="group grid items-center gap-6 border-b border-black/15 py-9 sm:py-11 md:grid-cols-[4.5rem_minmax(0,1fr)_11rem] md:gap-10 lg:grid-cols-[4.5rem_minmax(0,1fr)_auto]">
               <span className="label-code text-black/65">{String(i + 1).padStart(2, "0")}</span>
               <div className="min-w-0">
                 <h3 className="type-h2 text-[2rem] sm:text-5xl">{s.name}</h3>
@@ -33,7 +33,7 @@ function Capabilities() {
               </div>
               <LineArt
                 name={ART[i % ART.length]}
-                className="mt-2 h-32 w-48 justify-self-center text-brass transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 md:mt-0 md:h-20 md:w-[7.5rem] md:justify-self-auto"
+                className="mt-2 h-32 w-48 justify-self-center text-brass transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 md:mt-0 md:h-28 md:w-44 lg:h-36 lg:w-56 md:justify-self-auto"
               />
             </div>
           </Reveal>
