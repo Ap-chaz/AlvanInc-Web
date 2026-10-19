@@ -93,8 +93,8 @@ function SiteNav() {
               : "border-white/10 bg-ink/90 px-4 py-3 sm:px-7",
           )}
         >
-          <Link to="/" aria-label={`${SITE.name} home`} className="min-w-0 text-[0.95rem]">
-            <Wordmark />
+          <Link to="/" aria-label={`${SITE.name} home`} className="min-w-0">
+            <Wordmark className="h-5 sm:h-6" />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -138,7 +138,7 @@ function SiteNav() {
           className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink/95 backdrop-blur-xl"
         >
           <div className="flex items-center justify-between p-5 sm:p-8">
-            <Wordmark className="text-[0.95rem]" />
+            <Wordmark className="h-6" />
             <button
               ref={closeRef}
               type="button"

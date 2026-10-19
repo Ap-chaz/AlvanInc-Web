@@ -15,7 +15,7 @@ export const OG_IMAGE = {
   path: "/og-image.png",
   width: 1200,
   height: 630,
-  alt: "AlvanInc: built to be trusted, built to sell.",
+  alt: "AlvanInc logo",
 };
 
 export const DEFAULT_DESCRIPTION =
@@ -141,6 +141,7 @@ export function homeJsonLd() {
         url: absoluteUrl("/"),
         description: DEFAULT_DESCRIPTION,
         image: absoluteUrl(OG_IMAGE.path),
+        logo: absoluteUrl("/icon-512.png"),
         address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
         areaServed: [
           { "@type": "Country", name: "Kenya" },
