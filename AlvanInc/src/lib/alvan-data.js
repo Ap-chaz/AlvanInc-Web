@@ -1,4 +1,4 @@
-const PROJECTS = [
+﻿const PROJECTS = [
   {
     slug: "tulia-coffee",
     placeholder: true, // TODO(owner): template project, replace with real work or delete
@@ -346,13 +346,13 @@ const PROJECTS = [
   {
     slug: "zuno",
     liveUrl: "https://escrowzuno.vercel.app",
-    name: "ZUNO",
+    name: "Zuno Escrow",
     category: "SaaS & Product",
     summary:
       "Escrow payment platform for online marketplace deals — funds held until delivery is confirmed.",
     tags: ["SaaS & Product", "4 months"],
     brief:
-      "ZUNO needed to make an abstract idea — a neutral third party holding a payment until both sides are satisfied — feel simple enough that a first-time buyer would trust it in seconds, not after reading a terms page.",
+      "Zuno Escrow needed to make an abstract idea — a neutral third party holding a payment until both sides are satisfied — feel simple enough that a first-time buyer would trust it in seconds, not after reading a terms page.",
     approach: [
       {
         title: "The mechanism stated up front",
