@@ -6,9 +6,16 @@ import { Button } from "@/components/alvan/button";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { PRINCIPLES } from "@/lib/alvan-data";
 
-// To show your real photo: put the file in /public (e.g. /public/alvan.webp) and set PORTRAIT = "/alvan.webp".
-// While it is null, a clean "AN" monogram is shown instead.
-const PORTRAIT = null;
+// Portrait lives in /public/alvan.webp (4:5). Set to null to fall back to the "AN" monogram.
+const PORTRAIT = "/alvan.webp";
+
+// Only facts that are true today. Update these as the studio grows.
+const FACTS = [
+  { label: "Based in", value: "Nairobi, Kenya" },
+  { label: "Sites live", value: "3" },
+  { label: "Payment", value: "M-Pesa or bank transfer" },
+  { label: "After launch", value: "30 days of support" },
+];
 
 export default function About() {
   useHead(SEO["/about"]);
@@ -46,6 +53,16 @@ export default function About() {
             </p>
           </Reveal>
         </div>
+        <Reveal delay={200}>
+          <dl className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-black/10 pt-10 lg:grid-cols-4">
+            {FACTS.map((f) => (
+              <div key={f.label}>
+                <dt className="label-mono text-black/65">{f.label}</dt>
+                <dd className="display-tight mt-2 text-xl sm:text-2xl">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </section>
 
       <section className="surface-light-deep px-5 py-24 sm:px-8 sm:py-32">
