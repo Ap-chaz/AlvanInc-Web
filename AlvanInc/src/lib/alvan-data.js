@@ -1,464 +1,11 @@
 const PROJECTS = [
   {
-    slug: "tulia-coffee",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Tulia Coffee Co.",
-    category: "E-commerce",
-    summary: "Repeat-subscription coffee storefront in Nairobi — 3.2× checkout conversion.",
-    variant: "commerce",
-    headline: "Roasted this week, at your door on Friday.",
-    tags: ["E-commerce", "Studio tier", "6 weeks"],
-    brief:
-      "Tulia sold excellent coffee through a template store that treated a subscription like an afterthought. Repeat orders were tracked on WhatsApp by hand, and the checkout lost roughly half of mobile buyers before M-Pesa payment.",
-    approach: [
-      {
-        title: "Subscription as the default path",
-        body: "We rebuilt the product page around roast date and delivery cadence instead of a generic add-to-cart, so the recurring option is the obvious one rather than a checkbox at the end.",
-      },
-      {
-        title: "A checkout that fits one thumb",
-        body: "Three steps became one scrolling sheet with M-Pesa and card payment first. Every field earns its place; nothing asks twice.",
-      },
-      {
-        title: "Copy written next to the roaster",
-        body: "Product copy came out of a morning at the roastery in Kiambu, not a brief. Each blend reads like the person who roasts it is describing it to you.",
-      },
-    ],
-    results: [
-      {
-        label: "Checkout conversion",
-        stat: "3.2×",
-        caption: "Mobile checkout completion vs. the old store.",
-      },
-      {
-        label: "Subscribers",
-        stat: "1,400",
-        caption: "Active recurring deliveries within four months.",
-      },
-      { label: "Load time", stat: "0.9s", caption: "Largest contentful paint on 4G." },
-    ],
-    quote: {
-      text: "We stopped explaining our subscription to people. The site does it now, and it does it better than we did.",
-      name: "Dana Okwiri",
-      role: "Founder, Tulia Coffee Co.",
-    },
-    gallery: [
-      {
-        variant: "commerce",
-        headline: "Choose your blend.",
-        alt: "Tulia Coffee Co. product listing page",
-      },
-      {
-        variant: "editorial",
-        headline: "The Friday delivery.",
-        alt: "Tulia Coffee Co. subscription explainer page",
-      },
-      {
-        variant: "dashboard",
-        headline: "Manage your roast.",
-        alt: "Tulia Coffee Co. customer account dashboard",
-      },
-    ],
-  },
-  {
-    slug: "kilimani-homes",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Kilimani Homes",
-    category: "Real Estate",
-    summary: "Listings platform for a boutique Nairobi brokerage — 41% more viewing requests.",
-    variant: "dashboard",
-    headline: "Live life in the right address.",
-    tags: ["Real Estate", "Custom tier", "10 weeks"],
-    brief:
-      "Kilimani Homes listed forty properties across Nairobi and Mombasa in a spreadsheet-driven site nobody enjoyed using. Buyers messaged on WhatsApp to ask for details that were already on the page.",
-    approach: [
-      {
-        title: "One view for every listing",
-        body: "Map, gallery, and specification live on a single screen, so a buyer never loses their place while comparing two homes.",
-      },
-      {
-        title: "Agent-editable, without a developer",
-        body: "Listings publish from a structured CMS with photo ordering, status badges, and open-house scheduling built in.",
-      },
-      {
-        title: "Requests that qualify themselves",
-        body: "The viewing request form captures budget and timing up front, so agents call warm leads first.",
-      },
-    ],
-    results: [
-      {
-        label: "Viewing requests",
-        stat: "+41%",
-        caption: "Qualified requests in the first quarter.",
-      },
-      { label: "Time to publish", stat: "6 min", caption: "Average time to list a new property." },
-      { label: "Bounce rate", stat: "-28%", caption: "On listing detail pages." },
-    ],
-    gallery: [
-      {
-        variant: "dashboard",
-        headline: "Every listing, one view.",
-        alt: "Kilimani Homes listings index",
-      },
-      {
-        variant: "portfolio",
-        headline: "Book a viewing.",
-        alt: "Kilimani Homes viewing request flow",
-      },
-      {
-        variant: "editorial",
-        headline: "Neighbourhood notes.",
-        alt: "Kilimani Homes neighbourhood guide page",
-      },
-    ],
-  },
-  {
-    slug: "amana-pay",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Amana Pay",
-    category: "SaaS & Product",
-    summary: "Fintech onboarding product — positioning, site, and interface system.",
-    variant: "editorial",
-    headline: "Onboard your customers in under a minute.",
-    tags: ["SaaS & Product", "Custom tier", "8 weeks"],
-    brief:
-      "Amana had a working product and no way to explain it to businesses. The old site led with the technology and buried the outcome, and demo requests came almost entirely from existing referrals.",
-    approach: [
-      {
-        title: "Lead with the job, not the tech",
-        body: "We rewrote the top of the funnel around the thing customers actually buy: onboarding that verifies identity and finishes itself.",
-      },
-      {
-        title: "A live product surface on the page",
-        body: "The hero runs a scripted product moment rather than a screenshot, so the value is visible in under five seconds.",
-      },
-      {
-        title: "An interface system the team can extend",
-        body: "Components, type scale, and states shipped as a documented kit used across both marketing and app.",
-      },
-    ],
-    results: [
-      { label: "Demo requests", stat: "+68%", caption: "Inbound demos month over month." },
-      { label: "Time on page", stat: "2m 40s", caption: "Median session on the home page." },
-      { label: "Ship time", stat: "8 wks", caption: "Positioning through launch." },
-    ],
-    quote: {
-      text: "It's the first version of our site a salesperson can just send.",
-      name: "Faith Karanja",
-      role: "Co-founder, Amana Pay",
-    },
-    gallery: [
-      { variant: "editorial", headline: "Hi, I'm Amana.", alt: "Amana Pay home page hero" },
-      {
-        variant: "dashboard",
-        headline: "Onboarding, finished.",
-        alt: "Amana Pay product interface",
-      },
-      { variant: "portfolio", headline: "Built for teams.", alt: "Amana Pay pricing page" },
-    ],
-  },
-  {
-    slug: "baze-nights",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Baze Nights",
-    category: "Brand & Marketing",
-    summary: "Independent Nairobi music series — 2,100 tickets sold in the first month.",
-    variant: "music",
-    headline: "Enter the sound.",
-    tags: ["Brand & Marketing", "Launch tier", "5 days"],
-    brief:
-      "A new Westlands club night needed an identity and a single page that could sell tickets before the first event, with a launch date already fixed.",
-    approach: [
-      {
-        title: "One page, one job",
-        body: "Line-up, date, price, and an M-Pesa ticket button that never leaves the screen.",
-      },
-      {
-        title: "A mark that works at 40px",
-        body: "The identity was drawn for a phone lock screen and a door poster first.",
-      },
-      {
-        title: "Shipped in five days",
-        body: "Fixed scope, one round of feedback, live before the announcement.",
-      },
-    ],
-    results: [
-      { label: "Tickets sold", stat: "2,100", caption: "In the first month of sales." },
-      { label: "Build time", stat: "5 days", caption: "Brief to live site." },
-      { label: "Sell-through", stat: "94%", caption: "Of capacity across the opening season." },
-    ],
-    gallery: [
-      { variant: "music", headline: "Enter the sound.", alt: "Baze Nights landing page" },
-      { variant: "editorial", headline: "The line-up.", alt: "Baze Nights line-up section" },
-      { variant: "commerce", headline: "Get tickets.", alt: "Baze Nights ticket checkout" },
-    ],
-  },
-  {
-    slug: "studio-boma",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Studio Boma",
-    category: "Brand & Marketing",
-    summary: "Architecture practice portfolio — case studies that win commissions.",
-    variant: "portfolio",
-    headline: "We bring imagination to life.",
-    tags: ["Brand & Marketing", "Studio tier", "6 weeks"],
-    brief:
-      "Boma's work was strong and their site showed it as a grid of thumbnails with no story. Prospective clients could not tell what a project cost or how long it took.",
-    approach: [
-      {
-        title: "Projects as arguments",
-        body: "Every case study opens with the constraint and closes with the outcome.",
-      },
-      {
-        title: "Photography given room",
-        body: "Full-bleed imagery with type that stays out of the way.",
-      },
-      {
-        title: "A CMS the studio runs",
-        body: "New projects publish in an afternoon without a developer.",
-      },
-    ],
-    results: [
-      { label: "Enquiries", stat: "+55%", caption: "Qualified commission enquiries." },
-      { label: "Pages per visit", stat: "4.6", caption: "Average across new visitors." },
-      { label: "Publish time", stat: "1 day", caption: "For a full new case study." },
-    ],
-    gallery: [
-      {
-        variant: "portfolio",
-        headline: "We bring imagination to life.",
-        alt: "Studio Boma home page",
-      },
-      { variant: "editorial", headline: "Harbour House.", alt: "Studio Boma project case study" },
-      { variant: "dashboard", headline: "The practice.", alt: "Studio Boma about page" },
-    ],
-  },
-  {
-    slug: "kilele-advocates",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Kilele Advocates",
-    category: "Brand & Marketing",
-    summary: "Boutique Nairobi law firm site — consultations booked without a phone call.",
-    variant: "editorial",
-    headline: "Advice you can act on.",
-    tags: ["Professional services", "Studio tier", "5 weeks"],
-    brief:
-      "Kilele's clients wanted to know whether the firm handled their situation and what a first meeting cost. Neither answer was on the old site.",
-    approach: [
-      {
-        title: "Answer the two real questions",
-        body: "Practice areas and fee structure sit above everything else.",
-      },
-      {
-        title: "Booking instead of a contact form",
-        body: "Consultations schedule directly against the partners' calendars.",
-      },
-      {
-        title: "Plain-language writing",
-        body: "Every page rewritten out of legalese and into sentences.",
-      },
-    ],
-    results: [
-      { label: "Consultations", stat: "+37%", caption: "Booked directly through the site." },
-      { label: "Phone triage", stat: "-60%", caption: "Fewer unqualified intake calls." },
-      { label: "Launch", stat: "5 wks", caption: "From kickoff to live." },
-    ],
-    gallery: [
-      {
-        variant: "editorial",
-        headline: "Advice you can act on.",
-        alt: "Kilele Advocates home page",
-      },
-      {
-        variant: "portfolio",
-        headline: "Practice areas.",
-        alt: "Kilele Advocates practice areas page",
-      },
-      {
-        variant: "dashboard",
-        headline: "Book a consultation.",
-        alt: "Kilele Advocates booking flow",
-      },
-    ],
-  },
-  {
-    slug: "jikoni-kitchen",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Jikoni Kitchen",
-    category: "E-commerce",
-    summary: "Neighbourhood Nairobi restaurant — reservations up 48% off a single page.",
-    variant: "commerce",
-    headline: "Dinner, five nights a week.",
-    tags: ["Hospitality", "Launch tier", "5 days"],
-    brief:
-      "Jikoni was fully booked by word of mouth on weekends and quiet midweek. They needed a page that made a Tuesday table feel like a plan, bookable straight from Instagram.",
-    approach: [
-      {
-        title: "Menu first, always current",
-        body: "The seasonal menu updates from the kitchen, not a designer.",
-      },
-      {
-        title: "Reservations in two taps",
-        body: "Booking widget in the hero, no scrolling required.",
-      },
-      {
-        title: "Photography direction",
-        body: "A short shot list the team can re-shoot each season themselves.",
-      },
-    ],
-    results: [
-      { label: "Reservations", stat: "+48%", caption: "Midweek covers within two months." },
-      { label: "Mobile share", stat: "86%", caption: "Of all bookings made on a phone." },
-      { label: "Build time", stat: "5 days", caption: "Brief to live." },
-    ],
-    gallery: [
-      {
-        variant: "commerce",
-        headline: "Dinner, five nights a week.",
-        alt: "Jikoni Kitchen home page",
-      },
-      { variant: "editorial", headline: "This week's menu.", alt: "Jikoni Kitchen menu page" },
-      { variant: "portfolio", headline: "Book a table.", alt: "Jikoni Kitchen reservation screen" },
-    ],
-  },
-  {
-    slug: "nguvu-fitness",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Nguvu Fitness",
-    category: "SaaS & Product",
-    summary: "Coaching platform — member signups doubled after the rebuild.",
-    variant: "dashboard",
-    headline: "Train the plan, not the mood.",
-    tags: ["Fitness", "Custom tier", "9 weeks"],
-    brief:
-      "Nguvu ran coaching over spreadsheets and an M-Pesa paybill number. Members churned because progress was invisible between sessions.",
-    approach: [
-      {
-        title: "Progress you can see",
-        body: "Every session logs against a visible block, so the plan explains itself.",
-      },
-      {
-        title: "Billing built in",
-        body: "Membership tiers, pauses, and cancellations handled without a manual M-Pesa reconciliation.",
-      },
-      {
-        title: "Coach tooling",
-        body: "Programme templates that take minutes rather than an evening.",
-      },
-    ],
-    results: [
-      { label: "Signups", stat: "2×", caption: "New members per month." },
-      { label: "Churn", stat: "-31%", caption: "Monthly member churn." },
-      { label: "Admin time", stat: "-6 hrs", caption: "Saved per coach, per week." },
-    ],
-    gallery: [
-      { variant: "dashboard", headline: "Train the plan.", alt: "Nguvu Fitness member dashboard" },
-      {
-        variant: "portfolio",
-        headline: "Your block, week 3.",
-        alt: "Nguvu Fitness programme view",
-      },
-      {
-        variant: "commerce",
-        headline: "Choose a membership.",
-        alt: "Nguvu Fitness membership pricing",
-      },
-    ],
-  },
-  {
-    slug: "tumaini-trust",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Tumaini Trust",
-    category: "Brand & Marketing",
-    summary: "NGO rebuild — recurring donations up 2.4× year on year.",
-    variant: "portfolio",
-    headline: "Small gifts, compounding.",
-    tags: ["Nonprofit", "Studio tier", "6 weeks"],
-    brief:
-      "Tumaini's donation page asked for a one-off M-Pesa amount and told donors nothing about where it went. Recurring giving was under a tenth of revenue.",
-    approach: [
-      {
-        title: "Show the unit of impact",
-        body: "Every amount is paired with what it funds, in one sentence.",
-      },
-      {
-        title: "Monthly as the default",
-        body: "The recurring option is pre-selected and easy to change.",
-      },
-      {
-        title: "Reporting on the page",
-        body: "Annual outcomes published as a live section, not a buried PDF.",
-      },
-    ],
-    results: [
-      {
-        label: "Recurring giving",
-        stat: "2.4×",
-        caption: "Year-on-year monthly donation revenue.",
-      },
-      { label: "Average gift", stat: "+22%", caption: "Across all donation types." },
-      {
-        label: "Donor retention",
-        stat: "78%",
-        caption: "Twelve-month retention on monthly gifts.",
-      },
-    ],
-    gallery: [
-      {
-        variant: "portfolio",
-        headline: "Small gifts, compounding.",
-        alt: "Tumaini Trust home page",
-      },
-      { variant: "commerce", headline: "Give monthly.", alt: "Tumaini Trust donation flow" },
-      { variant: "editorial", headline: "Where it goes.", alt: "Tumaini Trust impact report page" },
-    ],
-  },
-  {
-    slug: "kaskazi-logistics",
-    placeholder: true, // TODO(owner): template project, replace with real work or delete
-    name: "Kaskazi Logistics",
-    category: "SaaS & Product",
-    summary: "Cross-border logistics quoting tool — quotes returned in seconds, not a day.",
-    variant: "editorial",
-    headline: "Price the load before you take the call.",
-    tags: ["SaaS & Product", "Custom tier", "11 weeks"],
-    brief:
-      "Kaskazi quoted freight by email and WhatsApp. Customers waited a day, and half of them booked with whoever answered first — often a competitor across the border.",
-    approach: [
-      {
-        title: "An instant quote engine",
-        body: "Route, weight, and date return a price on the page immediately.",
-      },
-      {
-        title: "A marketing site that trusts the tool",
-        body: "The quoting widget is the hero — there is nothing to explain.",
-      },
-      { title: "Ops handoff", body: "Accepted quotes drop straight into the dispatch queue." },
-    ],
-    results: [
-      { label: "Quote turnaround", stat: "8s", caption: "Median, down from roughly 20 hours." },
-      { label: "Win rate", stat: "+29%", caption: "On inbound quote requests." },
-      { label: "Manual quotes", stat: "-74%", caption: "Handled by the operations team." },
-    ],
-    gallery: [
-      { variant: "editorial", headline: "Price the load.", alt: "Kaskazi Logistics quoting hero" },
-      {
-        variant: "dashboard",
-        headline: "Dispatch queue.",
-        alt: "Kaskazi Logistics operations dashboard",
-      },
-      { variant: "portfolio", headline: "Lanes we run.", alt: "Kaskazi Logistics coverage page" },
-    ],
-  },
-  {
     slug: "rommie",
     liveUrl: "https://rommieweb.vercel.app",
     name: "Rommie",
     category: "E-commerce",
     summary:
       "Student rooms and hostels marketplace in Nairobi, with listings, an admin panel and simple sign-in.",
-    variant: "commerce",
-    headline: "Find a room near your school.",
     tags: ["E-commerce", "Web app"],
     // TODO(owner): add a timeline tag, results and a quote once you have real ones.
     brief:
@@ -478,21 +25,17 @@ const PROJECTS = [
       },
     ],
     results: [],
-    gallery: [],
   },
   {
     slug: "zuno",
     liveUrl: "https://escrowzuno.vercel.app",
-    name: "ZUNO",
+    name: "Zuno Escrow",
     category: "SaaS & Product",
     summary:
       "Escrow payment platform for online marketplace deals — funds held until delivery is confirmed.",
-    variant: "dashboard",
-    headline: "Every transaction, secured.",
-    image: "/zuno-hero.webp",
     tags: ["SaaS & Product", "4 months"],
     brief:
-      "ZUNO needed to make an abstract idea — a neutral third party holding a payment until both sides are satisfied — feel simple enough that a first-time buyer would trust it in seconds, not after reading a terms page.",
+      "Zuno Escrow needed to make an abstract idea — a neutral third party holding a payment until both sides are satisfied — feel simple enough that a first-time buyer would trust it in seconds, not after reading a terms page.",
     approach: [
       {
         title: "The mechanism stated up front",
@@ -507,26 +50,6 @@ const PROJECTS = [
         body: "A near-black background with a single amber accent keeps the focus on the two things that matter: the promise, and the action.",
       },
     ],
-    gallery: [
-      {
-        variant: "dashboard",
-        headline: "Every transaction, secured.",
-        alt: "ZUNO landing page",
-        image: "/zuno-escrow-confirmed.webp",
-      },
-      {
-        variant: "editorial",
-        headline: "Funds locked until delivery.",
-        alt: "ZUNO escrow explainer",
-        image: "/zuno-tracking.webp",
-      },
-      {
-        variant: "portfolio",
-        headline: "Verified sellers only.",
-        alt: "ZUNO seller verification",
-        image: "/zuno-sellers.webp",
-      },
-    ],
   },
   {
     slug: "sharks-clinic",
@@ -536,13 +59,10 @@ const PROJECTS = [
     name: "Sharks Clinic",
     category: "Brand & Marketing",
     summary:
-      "Healthcare marketing site with online booking — 10K+ patients served, 98% satisfaction.",
-    variant: "editorial",
-    headline: "Your health, our priority.",
-    image: "/sharks-clinic-hero.webp",
-    tags: ["Brand & Marketing", "3 weeks"],
+      "Clinic website with service departments and online appointment booking.",
+    tags: ["Brand & Marketing"],
     brief:
-      "Sharks Clinic needed a site that could carry the weight of a healthcare decision — clear service departments, a straightforward way to book, and enough real patient trust signals that a first-time visitor felt comfortable choosing them over a name they already knew.",
+      "Sharks Clinic needed a site that could carry the weight of a healthcare decision — clear service departments and a straightforward way to book.",
     approach: [
       {
         title: "Departments, not a single service list",
@@ -551,40 +71,6 @@ const PROJECTS = [
       {
         title: "Booking as the primary action",
         body: "Book Appointment sits ahead of everything else in the hero, with Our Services as the secondary path for people who want to look first.",
-      },
-      {
-        title: "Real patients, not stock reassurance",
-        body: "Testimonials carry names and ratings rather than generic praise, next to the clinic's actual patient and satisfaction figures.",
-      },
-    ],
-    results: [
-      { label: "Patients served", stat: "10K+", caption: "Treated through the clinic to date." },
-      { label: "Patient satisfaction", stat: "98%", caption: "Reported across patient feedback." },
-      { label: "Support availability", stat: "24/7", caption: "Emergency and patient support." },
-    ],
-    quote: {
-      text: "The doctors were extremely professional and caring. The booking process was smooth and I received excellent care.",
-      name: "Collins King'oina",
-      role: "Patient, Sharks Clinic",
-    },
-    gallery: [
-      {
-        variant: "editorial",
-        headline: "Your health, our priority.",
-        alt: "Sharks Clinic home page",
-        image: "/sharks-clinic-gallery-1.webp",
-      },
-      {
-        variant: "portfolio",
-        headline: "Departments.",
-        alt: "Sharks Clinic services page",
-        image: "/sharks-clinic-gallery-2.webp",
-      },
-      {
-        variant: "dashboard",
-        headline: "Book an appointment.",
-        alt: "Sharks Clinic appointment booking",
-        image: "/sharks-clinic-gallery-3.webp",
       },
     ],
   },
@@ -702,27 +188,6 @@ const PRINCIPLES = [
     body: "Files, code, domain, accounts. No proprietary builder you can only leave by rebuilding from scratch.",
   },
 ];
-// TODO(owner): TEAM is template data, replace with your real bio
-const TEAM = [
-  {
-    name: "Amani Otieno",
-    role: "Founder & design lead",
-    specialty: "Positioning and page architecture",
-    variant: "portfolio",
-  },
-  {
-    name: "Brian Mwangi",
-    role: "Build lead",
-    specialty: "Front-end performance and CMS systems",
-    variant: "dashboard",
-  },
-  {
-    name: "Faiza Abdi",
-    role: "Writer",
-    specialty: "Product copy and case studies",
-    variant: "editorial",
-  },
-];
 // TODO(owner): add real client quotes here. The home-page Testimonials section stays hidden while
 // this list is empty. Shape: { text: "What they said", name: "Full name", role: "Role, Company" }
 const TESTIMONIALS = [];
@@ -789,7 +254,6 @@ export {
   PROCESS_STEPS,
   PROJECTS,
   SERVICES,
-  TEAM,
   TESTIMONIALS,
   TIERS,
 };

@@ -1,4 +1,5 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { useState } from "react";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
@@ -6,14 +7,11 @@ import { Button } from "@/components/alvan/button";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { SITE, whatsappLink } from "@/lib/site";
 
-const title = "Contact — start a fixed-price project | AlvanInc";
-const description =
-  "Tell us what you're selling and we'll build the site for it. Share your package, budget, and timeline and we reply within one business day.";
 
 const EMPTY = { name: "", email: "", company: "", selling: "", pkg: "", budget: "", timeline: "" };
 
 const inputCls =
-  "mt-3 w-full rounded-xl border border-black/15 bg-transparent px-4 py-3.5 text-base text-black placeholder:text-black/35 focus:border-black/40";
+  "mt-3 w-full rounded-xl border border-black/15 bg-transparent px-4 py-3.5 text-base text-black placeholder:text-black/65 focus:border-black/40";
 
 function validate(v) {
   const e = {};
@@ -51,7 +49,7 @@ const waHref = (v) => whatsappLink(`Hello AlvanInc, I'd like to start a project.
  *  - error     the form service failed; details are kept so they can retry or use email/WhatsApp
  */
 export default function Contact() {
-  useHead({ title, description });
+  useHead(SEO["/contact"]);
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
@@ -314,7 +312,7 @@ export default function Contact() {
                     WhatsApp
                   </a>
                 </li>
-                <li className="text-black/50">{SITE.location}</li>
+                <li className="text-black/65">{SITE.location}</li>
               </ul>
             </div>
             <div>
@@ -344,7 +342,7 @@ export default function Contact() {
 function Field({ label, error, className, children }) {
   return (
     <label className={`block ${className ?? ""}`}>
-      <span className="label-mono text-black/50">{label}</span>
+      <span className="label-mono text-black/65">{label}</span>
       {children}
       {error && (
         <span role="alert" className="mt-2 block text-xs text-[#B4472F]">

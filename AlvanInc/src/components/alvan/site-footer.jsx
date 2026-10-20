@@ -44,8 +44,8 @@ function SiteFooter({ cta = true }) {
 
       <div className="grid gap-14 border-t border-border pt-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div className="max-w-xs">
-          <Link to="/" aria-label={`${SITE.name} home`} className="inline-block text-lg">
-            <Wordmark />
+          <Link to="/" aria-label={`${SITE.name} home`} className="inline-block">
+            <Wordmark className="h-8 sm:h-9" />
           </Link>
           <p className="mt-6 text-sm leading-relaxed text-bone/70">{SITE.tagline}</p>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-bone/80">

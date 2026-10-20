@@ -1,0 +1,90 @@
+/* Line-art diagram animations (used by components/alvan/line-art.jsx).
+   Everything is CSS-only, transform/opacity only, and switched off for reduced motion. */
+
+.la-anim * {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Staggered delays, shared by the wave-style animations */
+.la-d0 { animation-delay: 0s; }
+.la-d1 { animation-delay: 0.25s; }
+.la-d2 { animation-delay: 0.5s; }
+.la-d3 { animation-delay: 0.75s; }
+.la-d4 { animation-delay: 1s; }
+
+/* nodes: dot travels A <-> B, the lone circle breathes */
+.la-slide {
+  animation: la-slide 2.6s ease-in-out infinite alternate;
+}
+.la-pulse {
+  animation: la-pulse 2.6s ease-in-out infinite;
+}
+
+/* network: hub breathes, outer nodes blink in turn */
+.la-hub {
+  animation: la-hub 2.8s ease-in-out infinite;
+}
+.la-node {
+  animation: la-blink 2.8s ease-in-out infinite;
+}
+
+/* bars + browser lines: soft wave */
+.la-bar {
+  transform-origin: left center;
+  animation: la-wave 2.6s ease-in-out infinite;
+}
+.la-line {
+  transform-origin: left center;
+  animation: la-wave 2.6s ease-in-out infinite;
+}
+
+/* flow: boxes light up in sequence while a dot runs through them */
+.la-box {
+  animation: la-blink 3s ease-in-out infinite;
+}
+.la-travel {
+  animation: la-travel 3s ease-in-out infinite;
+}
+
+/* layers: each sheet floats a little out of phase */
+.la-float {
+  animation: la-float 3.2s ease-in-out infinite;
+}
+
+@keyframes la-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(40px); }
+}
+@keyframes la-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.35; }
+}
+@keyframes la-hub {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+@keyframes la-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes la-wave {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: 0.3; transform: scaleX(0.7); }
+}
+@keyframes la-travel {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(82px); opacity: 0; }
+}
+@keyframes la-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .la-anim * {
+    animation: none !important;
+  }
+}

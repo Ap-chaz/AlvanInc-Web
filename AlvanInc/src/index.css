@@ -39,6 +39,7 @@
   --color-bone-deep: var(--bone-deep);
   --color-graphite: var(--graphite);
   --color-brass: var(--brass);
+  --color-brass-deep: var(--brass-deep);
 
   --font-display: "Satoshi", sans-serif;
   --font-sans: "Satoshi", sans-serif;
@@ -54,6 +55,8 @@
   --bone-deep: oklch(0.917 0.011 92);
   --graphite: oklch(0.63 0.011 260);
   --brass: oklch(0.735 0.117 84);
+  /* Brass for TEXT on bone surfaces: 5.8:1 on bone, 5.2:1 on bone-deep (plain brass is 2.1:1) */
+  --brass-deep: oklch(0.48 0.105 84);
 
   --background: var(--ink);
   --foreground: var(--bone);
@@ -110,6 +113,17 @@
   background-color: var(--color-bone-deep);
   color: oklch(0.205 0 0);
   --color-border: oklch(0 0 0 / 12%);
+}
+
+/* Contrast: plain brass is only 2.1:1 on bone, so brass TEXT on light sections uses --brass-deep.
+   Applies to text-brass and its hover / group-hover variants inside .surface-light(-deep), and skips
+   dark cards nested in a light section (.bg-ink / .bg-ink-soft), where plain brass is 6.8-7.7:1.
+   Backgrounds, borders and buttons keep the real brass. Unlayered on purpose: it must beat utilities. */
+:is(.surface-light, .surface-light-deep)
+  :is(.text-brass, .hover\:text-brass:hover, .group:hover .group-hover\:text-brass):not(
+    :is(.bg-ink, .bg-ink-soft, .bg-ink *, .bg-ink-soft *)
+  ) {
+  color: var(--brass-deep);
 }
 
 @utility label-mono {

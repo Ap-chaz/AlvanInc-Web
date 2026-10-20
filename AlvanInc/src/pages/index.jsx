@@ -1,4 +1,5 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Hero } from "@/components/alvan/hero";
 import { Intro } from "@/components/alvan/intro";
@@ -9,12 +10,9 @@ import { ProcessSteps } from "@/components/alvan/process-steps";
 import { LiveSites } from "@/components/alvan/live-sites";
 import { Testimonials } from "@/components/alvan/testimonials";
 import { HomeFaq } from "@/components/alvan/home-faq";
-import { PricingTeaser } from "@/components/alvan/work";
-const title = "AlvanInc — Websites that sell, built for Kenyan businesses";
-const description =
-  "AlvanInc designs and builds websites that build trust and win customers for SMEs, fintechs, law firms, and real estate brands across Kenya and East Africa. Fixed-price packages, live in weeks.";
+import { PricingTeaser } from "@/components/alvan/pricing-teaser";
 export default function Index() {
-  useHead({ title, description });
+  useHead(SEO["/"]);
   return (
     <PageShell badge>
       <Hero />

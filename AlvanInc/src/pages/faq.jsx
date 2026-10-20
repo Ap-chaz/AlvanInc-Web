@@ -1,14 +1,12 @@
 import { useHead } from "@/lib/use-head";
+import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { AccordionItem } from "@/components/alvan/accordion";
 import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { FAQ_GROUPS } from "@/lib/alvan-data";
-const title = "FAQ — scope, timelines, and ownership | AlvanInc";
-const description =
-  "Direct answers on extra pages, payment plans, revisions, platforms, and who owns the finished website when a AlvanInc project ships.";
 export default function Faq() {
-  useHead({ title, description });
+  useHead(SEO["/faq"]);
   return (
     <PageShell>
       <PageHeader

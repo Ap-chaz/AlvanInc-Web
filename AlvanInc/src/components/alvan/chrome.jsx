@@ -31,6 +31,7 @@ function SiteNav() {
   const { pathname } = useLocation();
   const triggerRef = useRef(null);
   const closeRef = useRef(null);
+  const dialogRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -44,14 +45,33 @@ function SiteNav() {
     setOpen(false);
   }, [pathname]);
 
-  // While open: lock page scroll, close on Escape, move focus in and back out
+  // While open: lock page scroll, close on Escape, keep Tab inside the dialog, move focus in and back out
   useEffect(() => {
     if (!open) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
     const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      // Focus trap: Tab / Shift+Tab wrap around inside the dialog instead of reaching the page behind it
+      const dialog = dialogRef.current;
+      const nodes = dialog?.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (!nodes || nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      const active = document.activeElement;
+      const outside = !dialog.contains(active);
+      if (e.shiftKey && (active === first || outside)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || outside)) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", onKey);
     const trigger = triggerRef.current;
@@ -73,8 +93,8 @@ function SiteNav() {
               : "border-white/10 bg-ink/90 px-4 py-3 sm:px-7",
           )}
         >
-          <Link to="/" aria-label={`${SITE.name} home`} className="min-w-0 text-[0.95rem]">
-            <Wordmark />
+          <Link to="/" aria-label={`${SITE.name} home`} className="min-w-0">
+            <Wordmark className="h-5 sm:h-6" />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -111,45 +131,37 @@ function SiteNav() {
 
       {open && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
-          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink/95 backdrop-blur-xl"
+          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink"
         >
-          <div className="flex items-center justify-between p-5 sm:p-8">
-            <Wordmark className="text-[0.95rem]" />
+          <div className="flex items-center justify-end px-6 pb-2 pt-6 sm:px-16 sm:pt-8">
             <button
               ref={closeRef}
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="label-display flex items-center gap-2 rounded-full border border-border px-4 py-2.5 text-bone transition-colors hover:text-brass"
+              className="label-display flex items-center gap-2 rounded-full border border-border px-5 py-3 text-bone transition-colors hover:text-brass"
             >
               Close <X className="size-3.5" aria-hidden="true" />
             </button>
           </div>
 
-          <nav aria-label="Full site" className="flex flex-col gap-1 px-6 pb-10 pt-4 sm:px-16">
+          <nav aria-label="Full site" className="flex flex-col px-6 pb-10 pt-8 sm:px-16 sm:pt-12">
             {NAV_ALL.map((l, i) => (
               <Link
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
                 style={{ animationDelay: `${80 + i * 55}ms` }}
-                className="rise-in flex items-baseline gap-4 py-1 text-bone transition-colors hover:text-brass"
+                className="rise-in display-tight py-0.5 text-4xl leading-[1.05] text-bone transition-colors hover:text-brass sm:text-6xl"
               >
-                <span className="label-code text-graphite">{String(i + 1).padStart(2, "0")}</span>
-                <span className="type-h1">{l.label}</span>
+                {l.label}
               </Link>
             ))}
           </nav>
-
-          <div className="mt-auto flex flex-col gap-6 px-6 pb-10 sm:px-16">
-            <Button to="/contact" icon="arrow" className="self-start">
-              Start a project
-            </Button>
-            <p className="label-code text-graphite">{SITE.city}</p>
-          </div>
         </div>
       )}
     </>

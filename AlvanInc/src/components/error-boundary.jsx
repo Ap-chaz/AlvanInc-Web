@@ -9,6 +9,18 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error) {
     console.error(error);
+    // After a redeploy, an open tab asks for route chunks whose file names no longer exist.
+    // One automatic reload fetches the new build; the session flag stops a reload loop.
+    const msg = String(error?.message ?? error);
+    if (/dynamically imported module|importing a module script|loading chunk|loading css chunk/i.test(msg)) {
+      try {
+        if (sessionStorage.getItem("alvan-chunk-reload")) return;
+        sessionStorage.setItem("alvan-chunk-reload", "1");
+      } catch {
+        return;
+      }
+      window.location.reload();
+    }
   }
 
   render() {

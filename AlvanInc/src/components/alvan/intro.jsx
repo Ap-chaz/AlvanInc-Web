@@ -41,7 +41,7 @@ function Intro() {
             aria-label="Where we are based"
             className="rounded-3xl border border-black/10 bg-bone-deep p-7 sm:p-8"
           >
-            <p className="label-code text-black/50">Based in</p>
+            <p className="label-code text-black/65">Based in</p>
             <p className="display-tight mt-4 text-4xl">{SITE.city}</p>
             <p className="mt-4 text-sm leading-relaxed text-black/65">{SITE.location.split(" · ")[1] ?? SITE.location}.</p>
             <p className="mt-7 flex items-center gap-3 border-t border-black/10 pt-5 text-sm text-black">
