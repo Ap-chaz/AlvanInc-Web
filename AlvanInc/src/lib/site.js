@@ -22,7 +22,7 @@ export const SITE = {
   whatsappHref: `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WHATSAPP_TEXT)}`,
   // TODO(owner): paste your form-service URL here (e.g. a free Formspree form: https://formspree.io/f/xxxxxxx).
   // While empty, the contact form opens the visitor's email app instead of sending by itself.
-  formEndpoint: "",
+  formEndpoint: "http://localhost:3000/api/enquiries",
   socials: [
     // TODO(owner): replace with your real profile URLs
     { label: "Instagram", href: "https://instagram.com/" },
