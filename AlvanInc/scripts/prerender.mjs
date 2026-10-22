@@ -133,7 +133,7 @@ async function main() {
   await fs.writeFile(path.join(DIST, "sitemap.xml"), sitemapXml(routes));
   await fs.writeFile(
     path.join(DIST, "robots.txt"),
-    `User-agent: *\nAllow: /\n\nSitemap: ${absoluteUrl("/sitemap.xml")}\n`,
+    `User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${absoluteUrl("/sitemap.xml")}\n`,
   );
 
   const ogFile = path.join(DIST, OG_IMAGE.path.replace(/^\//, ""));

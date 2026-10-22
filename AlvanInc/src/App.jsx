@@ -14,6 +14,10 @@ const Services = lazy(() => import("@/pages/services"));
 const WorkIndex = lazy(() => import("@/pages/work-index"));
 const CaseStudy = lazy(() => import("@/pages/case-study"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+// Admin screens are public JavaScript but private data: noindex, and every request behind them
+// is gated by the backend's 401, not by the route.
+const AdminLogin = lazy(() => import("@/pages/admin/login"));
+const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
 // Dev-only: the dynamic import sits behind import.meta.env.DEV, so production builds drop it.
 const Styleguide = import.meta.env.DEV ? lazy(() => import("@/pages/styleguide")) : null;
 
@@ -49,6 +53,8 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/work" element={<WorkIndex />} />
           <Route path="/work/:slug" element={<CaseStudy />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
           {Styleguide && <Route path="/styleguide" element={<Styleguide />} />}
           <Route path="*" element={<NotFound />} />
         </Routes>
