@@ -157,13 +157,18 @@ export default function AdminDashboard() {
                         </td>
                         <td className="whitespace-nowrap px-5 py-4 text-bone">{e.name}</td>
                         <td className="px-5 py-4">
-                          <a href={`mailto:${e.email}`} className="link-underline text-bone">
+                          {/* Not .link-underline: that CTA style uppercases and letter-spaces text,
+                              which makes an email address harder to read, not easier to click. */}
+                          <a
+                            href={`mailto:${e.email}`}
+                            className="whitespace-nowrap text-bone underline decoration-white/20 underline-offset-4 transition-colors hover:text-brass hover:decoration-brass"
+                          >
                             {e.email}
                           </a>
                         </td>
                         <td className="px-5 py-4 text-graphite">{e.company || "—"}</td>
-                        <td className="px-5 py-4 text-bone">
-                          <span className="line-clamp-3 max-w-[22rem] whitespace-pre-line">{e.selling || "—"}</span>
+                        <td className="w-[22rem] min-w-[18rem] px-5 py-4 text-bone">
+                          <span className="line-clamp-3 block whitespace-pre-line">{e.selling || "—"}</span>
                         </td>
                         <td className="whitespace-nowrap px-5 py-4 text-graphite">{e.package_interest || "—"}</td>
                         <td className="whitespace-nowrap px-5 py-4 text-graphite">{e.budget || "—"}</td>
