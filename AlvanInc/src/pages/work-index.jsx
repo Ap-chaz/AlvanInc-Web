@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { useState } from "react";
@@ -7,11 +8,17 @@ import { CATEGORIES, PROJECTS } from "@/lib/alvan-data";
 
 // Template projects (placeholder: true) stay hidden until replaced with real work.
 const SHOW_PLACEHOLDERS = false;
-const visible = PROJECTS.filter((p) => SHOW_PLACEHOLDERS || !p.placeholder);
-const categories = CATEGORIES.filter((c) => c === "All" || visible.some((p) => p.category === c));
 
 export default function WorkIndex() {
   useHead(SEO["/work"]);
+  const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const { data: categoryList } = useApi(
+    "/api/categories",
+    (json) => ["All", ...json.categories.map((c) => c.name)],
+    CATEGORIES,
+  );
+  const visible = projects.filter((p) => SHOW_PLACEHOLDERS || !p.placeholder);
+  const categories = categoryList.filter((c) => c === "All" || visible.some((p) => p.category === c));
   const [filter, setFilter] = useState("All");
   const shown = filter === "All" ? visible : visible.filter((p) => p.category === filter);
   return (

@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { Link } from "react-router-dom";
@@ -21,6 +22,7 @@ const PRICING_FAQ = [
 ];
 export default function Pricing() {
   useHead(SEO["/pricing"]);
+    const { data: tiers } = useApi("/api/packages", (json) => json.packages, TIERS);
   return (
     <PageShell>
       <PageHeader
@@ -35,7 +37,7 @@ export default function Pricing() {
 
       <section className="surface-light px-5 pb-24 sm:px-8 sm:pb-32">
         <div className="grid gap-5 lg:grid-cols-3">
-          {TIERS.map((t, i) => (
+          {tiers.map((t, i) => (
             <Reveal key={t.name} delay={i * 120}>
               <article
                 className={`flex h-full flex-col rounded-2xl border p-8 transition-all duration-[250ms] ease-out hover:-translate-y-1.5 ${t.featured ? "border-brass/60 bg-bone-deep" : "border-black/10 hover:border-black/30"}`}

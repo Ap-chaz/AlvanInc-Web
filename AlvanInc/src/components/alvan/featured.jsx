@@ -1,4 +1,5 @@
-﻿import { Reveal } from "./reveal";
+﻿import { useApi } from "@/lib/use-api";
+import { Reveal } from "./reveal";
 import { Button } from "./button";
 import { Eyebrow, Tag } from "./ui";
 import { ViewSiteLink } from "./view-site";
@@ -8,7 +9,8 @@ const FEATURED_SLUG = "zuno";
 
 /** Home: one flagship project on a dark band. Text only, no photo. */
 function Featured() {
-  const p = PROJECTS.find((x) => x.slug === FEATURED_SLUG);
+  const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const p = projects.find((x) => x.slug === FEATURED_SLUG);
   if (!p) return null;
   return (
     <section id="featured" className="bg-ink px-5 py-24 sm:px-8 sm:py-36">

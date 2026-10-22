@@ -1,5 +1,3 @@
-import { PROJECTS } from "@/lib/alvan-data";
-
 /**
  * Home "Live sites" list. The URLs come from each project's `liveUrl` in alvan-data.js,
  * so there is one place to edit a link. Order = order on the page.
@@ -11,7 +9,9 @@ const BLURBS = {
   "sharks-clinic": "Clinic website with departments and online appointment booking.",
 };
 
-export const LIVE_SITES = ["zuno", "rommie", "sharks-clinic"]
-  .map((slug) => PROJECTS.find((p) => p.slug === slug))
-  .filter(Boolean)
-  .map((p) => ({ slug: p.slug, name: p.name, url: p.liveUrl ?? null, blurb: BLURBS[p.slug] }));
+export function buildLiveSites(projects) {
+  return ["zuno", "rommie", "sharks-clinic"]
+    .map((slug) => projects.find((p) => p.slug === slug))
+    .filter(Boolean)
+    .map((p) => ({ slug: p.slug, name: p.name, url: p.liveUrl ?? null, blurb: BLURBS[p.slug] }));
+}

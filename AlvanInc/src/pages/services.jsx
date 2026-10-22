@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { SERVICES, ALWAYS_INCLUDED } from "@/lib/alvan-data";
 export default function Services() {
   useHead(SEO["/services"]);
+  const { data: services } = useApi("/api/services", (json) => json.services, SERVICES);
   return (
     <PageShell>
       <PageHeader
@@ -22,7 +24,7 @@ export default function Services() {
 
       <section className="surface-light px-5 pb-28 sm:px-8 sm:pb-36">
         <div className="grid gap-5 md:grid-cols-2">
-          {SERVICES.map((s, i) => (
+          {services.map((s, i) => (
             <Reveal key={s.name} delay={(i % 2) * 120}>
               <article className="flex h-full flex-col rounded-2xl border border-black/10 p-8 transition-all duration-[250ms] ease-out hover:-translate-y-1.5 hover:border-black/30">
                 <span className="label-mono text-brass">0{i + 1}</span>

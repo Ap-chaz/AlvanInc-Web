@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { Link } from "react-router-dom";
 import { Reveal } from "./reveal";
 import { AccordionItem } from "./accordion";
@@ -15,7 +16,8 @@ const PICKS = [
 
 /** Home: a short FAQ on a light-deep surface, with a link to the full list. */
 function HomeFaq() {
-  const all = FAQ_GROUPS.flatMap((g) => g.items);
+  const { data: groups } = useApi("/api/faq", (json) => json.groups, FAQ_GROUPS);
+  const all = groups.flatMap((g) => g.items);
   const items = PICKS.map((q) => all.find((it) => it.q === q)).filter(Boolean);
   if (items.length === 0) return null;
   return (

@@ -9,6 +9,10 @@ const WHATSAPP_TEXT = "Hello! I'd like to talk about a project.";
 export const whatsappLink = (text = WHATSAPP_TEXT) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 
+// The backend address comes from .env.development locally and from the host's settings in production.
+// "?." matters: Node (the SEO build) has no import.meta.env, and this file is loaded there too.
+const API = import.meta.env?.VITE_API_URL ?? "";
+
 export const SITE = {
   name: "AlvanInc",
   tagline: "Websites and brands built for African founders.",
@@ -22,7 +26,7 @@ export const SITE = {
   whatsappHref: `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WHATSAPP_TEXT)}`,
   // TODO(owner): paste your form-service URL here (e.g. a free Formspree form: https://formspree.io/f/xxxxxxx).
   // While empty, the contact form opens the visitor's email app instead of sending by itself.
-  formEndpoint: "http://localhost:3000/api/enquiries",
+  formEndpoint: API ? `${API}/api/enquiries` : "",
   socials: [
     // TODO(owner): replace with your real profile URLs
     { label: "Instagram", href: "https://instagram.com/" },

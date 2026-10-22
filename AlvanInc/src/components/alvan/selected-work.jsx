@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./reveal";
@@ -11,7 +12,8 @@ const FEATURED_SLUG = "zuno";
 
 /** Home: text-led work cards on a light surface, then a "your project next" card. */
 function SelectedWork() {
-  const work = PROJECTS.filter((p) => !p.placeholder && p.slug !== FEATURED_SLUG).slice(0, 2);
+  const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const work = projects.filter((p) => !p.placeholder && p.slug !== FEATURED_SLUG).slice(0, 2);
   return (
     <section id="work" className="surface-light px-5 py-24 sm:px-8 sm:py-36">
       <div className="flex flex-wrap items-end justify-between gap-6">

@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { Link } from "react-router-dom";
 import { Reveal } from "./reveal";
 import { Eyebrow } from "./ui";
@@ -9,6 +10,7 @@ const ART = ["browser", "layers", "flow", "network"];
 
 /** Home: numbered capability rows with a small line diagram (dark). */
 function Capabilities() {
+  const { data: services } = useApi("/api/services", (json) => json.services, SERVICES);
   return (
     <section id="capabilities" className="surface-light-deep px-5 py-24 sm:px-8 sm:py-32">
       <Reveal>
@@ -16,7 +18,7 @@ function Capabilities() {
       </Reveal>
 
       <ol className="mt-12 border-t border-black/15 sm:mt-16">
-        {SERVICES.map((s, i) => (
+        {services.map((s, i) => (
           <Reveal as="li" key={s.name} delay={i * 80}>
             <div className="group grid items-center gap-6 border-b border-black/15 py-9 sm:py-11 md:grid-cols-[4.5rem_minmax(0,1fr)_11rem] md:gap-10 lg:grid-cols-[4.5rem_minmax(0,1fr)_auto]">
               <span className="label-code text-black/65">{String(i + 1).padStart(2, "0")}</span>

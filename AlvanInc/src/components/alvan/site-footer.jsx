@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { Link } from "react-router-dom";
 import { Reveal } from "./reveal";
 import { Button } from "./button";
@@ -19,7 +20,8 @@ function Column({ title, children }) {
 
 function SiteFooter({ cta = true }) {
   // Only real projects appear in the footer (template ones are flagged placeholder: true)
-  const work = PROJECTS.filter((p) => !p.placeholder).slice(0, 4);
+  const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const work = projects.filter((p) => !p.placeholder).slice(0, 4);
   const studio = NAV_ALL.filter((n) => ["Services", "Pricing", "Process", "About", "FAQ"].includes(n.label));
 
   return (

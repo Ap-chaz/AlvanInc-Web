@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pause, Play } from "lucide-react";
@@ -118,8 +119,8 @@ function StepText({ step }) {
   );
 }
 
-function AutoSteps() {
-  const n = PROCESS_STEPS.length;
+function AutoSteps({ steps }) {
+  const n = steps.length;
   const rootRef = useRef(null);
   const [active, setActive] = useState(0);
   const [run, setRun] = useState(0); // bumps on every change so the bar animation restarts
@@ -151,7 +152,7 @@ function AutoSteps() {
     <div ref={rootRef} data-paused={paused} className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
       <div>
         <ol>
-          {PROCESS_STEPS.map((s, i) => {
+          {steps.map((s, i) => {
             const isActive = i === active;
             return (
               <li key={s.n} className="flex gap-6">
@@ -213,21 +214,21 @@ function AutoSteps() {
       </div>
 
       <div key={active} className="lg:sticky lg:top-28">
-        <EditorPanel step={PROCESS_STEPS[active]} animate isLast={active === n - 1} />
+        <EditorPanel step={steps[active]} animate isLast={active === n - 1} />
       </div>
     </div>
   );
 }
 
-function StackedSteps() {
+function StackedSteps({ steps }) {
   return (
     <ol className="space-y-16">
-      {PROCESS_STEPS.map((s, i) => (
+      {steps.map((s, i) => (
         <li key={s.n} className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16">
           <div>
             <StepText step={s} />
           </div>
-          <EditorPanel step={s} isLast={i === PROCESS_STEPS.length - 1} />
+          <EditorPanel step={s} isLast={i === steps.length - 1} />
         </li>
       ))}
     </ol>
@@ -240,6 +241,7 @@ function StackedSteps() {
  */
 function ProcessSteps({ showHeading = true }) {
   const reduced = useReducedMotion();
+  const { data: steps } = useApi("/api/process", (json) => json.steps, PROCESS_STEPS);
   return (
     <section
       id="process"
@@ -269,7 +271,7 @@ function ProcessSteps({ showHeading = true }) {
       )}
 
       <div className={showHeading ? "mt-14 sm:mt-16" : undefined}>
-        {reduced ? <StackedSteps /> : <AutoSteps />}
+        {reduced ? <StackedSteps steps={steps} /> : <AutoSteps steps={steps} />}
       </div>
     </section>
   );

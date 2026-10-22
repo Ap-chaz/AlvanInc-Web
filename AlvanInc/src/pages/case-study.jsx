@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { Link, useParams } from "react-router-dom";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
@@ -10,15 +11,16 @@ import { projectSeo } from "@/lib/seo";
 
 export default function CaseStudyPage() {
   const { slug } = useParams();
-  const project = PROJECTS.find((p) => p.slug === slug);
-  if (!project) return <NotFound />;
-  return <CaseStudy key={project.slug} project={project} />;
+  const { data: projects, status } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) return status === "loading" ? null : <NotFound />;
+  return <CaseStudy key={project.slug} project={project} projects={projects} />;
 }
 
-function CaseStudy({ project }) {
+function CaseStudy({ project, projects }) {
   useHead(projectSeo(project));
-  const index = PROJECTS.findIndex((p) => p.slug === project.slug);
-  const next = PROJECTS[(index + 1) % PROJECTS.length];
+  const index = projects.findIndex((p) => p.slug === project.slug);
+  const next = projects[(index + 1) % projects.length];
   return (
     <PageShell cta={false}>
       <header className="surface-light px-5 pb-14 pt-36 sm:px-8 sm:pb-16 sm:pt-44">

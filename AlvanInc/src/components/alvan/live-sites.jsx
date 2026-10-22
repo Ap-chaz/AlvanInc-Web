@@ -1,7 +1,9 @@
+import { useApi } from "@/lib/use-api";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./reveal";
 import { Eyebrow } from "./ui";
-import { LIVE_SITES } from "@/lib/live-sites";
+import { buildLiveSites } from "@/lib/live-sites";
+import { PROJECTS } from "@/lib/alvan-data";
 
 const host = (url) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 const CARD =
@@ -58,6 +60,9 @@ function Card({ s, i }) {
 
 /** Home: three cards, one per live site we built (each opens in a new tab). Light-deep surface. */
 function LiveSites() {
+  const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
+  const liveSites = buildLiveSites(projects);
+
   return (
     <section id="live-sites" className="surface-light-deep px-5 py-24 sm:px-8 sm:py-32">
       <div className="flex flex-wrap items-end justify-between gap-6">
@@ -79,7 +84,7 @@ function LiveSites() {
       </div>
 
       <ul className="mt-14 grid gap-5 lg:grid-cols-3">
-        {LIVE_SITES.map((s, i) => (
+        {liveSites.map((s, i) => (
           <Reveal as="li" key={s.slug} delay={i * 90} className="h-full">
             <Card s={s} i={i} />
           </Reveal>

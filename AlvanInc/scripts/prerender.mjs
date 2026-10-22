@@ -15,6 +15,7 @@
  *
  * Change the domain in src/lib/site.js (SITE.url) and rebuild; everything here follows it.
  */
+import { PROJECTS } from "../src/lib/alvan-data.js";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { prerenderRoutes, buildHead, absoluteUrl, OG_IMAGE } from "../src/lib/seo.js";
@@ -93,6 +94,23 @@ function sitemapXml(routes) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
+/** Projects for the build: from the live API when SEO_API_URL is set, otherwise the static file. */
+async function loadProjects() {
+  const api = process.env.SEO_API_URL;
+  if (!api) return PROJECTS;
+  try {
+    const res = await fetch(`${api.replace(/\/+$/, "")}/api/projects`, { signal: AbortSignal.timeout(15000) });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const { projects } = await res.json();
+    if (!Array.isArray(projects) || projects.length === 0) throw new Error("no projects returned");
+    console.log(`Using ${projects.length} projects from ${api}`);
+    return projects;
+  } catch (err) {
+    console.warn(`WARNING: could not load projects from ${api} (${err.message}). Using the static data file.`);
+    return PROJECTS;
+  }
+}
+
 async function main() {
   const templatePath = path.join(DIST, "index.html");
   let template;
@@ -103,7 +121,7 @@ async function main() {
     process.exit(1);
   }
 
-  const routes = prerenderRoutes();
+  const routes = prerenderRoutes(await loadProjects());
   for (const route of routes) {
     const html = render(template, route);
     const out = route.path === "/" ? templatePath : path.join(DIST, route.path.replace(/^\//, ""), "index.html");

@@ -1,3 +1,4 @@
+import { useApi } from "@/lib/use-api";
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { PageShell } from "@/components/alvan/page-shell";
@@ -7,6 +8,7 @@ import { PageHeader, Eyebrow } from "@/components/alvan/ui";
 import { FAQ_GROUPS } from "@/lib/alvan-data";
 export default function Faq() {
   useHead(SEO["/faq"]);
+  const { data: groups } = useApi("/api/faq", (json) => json.groups, FAQ_GROUPS);
   return (
     <PageShell>
       <PageHeader
@@ -17,7 +19,7 @@ export default function Faq() {
 
       <section className="surface-light px-5 pb-28 sm:px-8 sm:pb-36">
         <div className="space-y-20">
-          {FAQ_GROUPS.map((g) => (
+          {groups.map((g) => (
             <div key={g.group} className="grid gap-8 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-16">
               <Reveal>
                 <Eyebrow>{g.group}</Eyebrow>
