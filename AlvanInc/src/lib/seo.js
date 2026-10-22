@@ -175,7 +175,7 @@ export function projectJsonLd(project) {
 }
 
 /** Every route that gets static HTML and a sitemap entry. */
-export function prerenderRoutes() {
+export function prerenderRoutes(projects = PROJECTS) {
   const routes = PAGES.map((p) => SEO[p.path]);
   for (const project of projects.filter(isIndexable)) {
     routes.push({ ...projectSeo(project), changefreq: "monthly", priority: "0.7" });
