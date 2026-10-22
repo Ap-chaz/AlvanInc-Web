@@ -112,6 +112,11 @@ function requireAdmin(req, res, next) {
   }
 }
 
+// Lets the dashboard ask "is this cookie still valid?" before it renders anything private.
+app.get('/api/admin/me', requireAdmin, (req, res) => {
+  res.json({ ok: true, id: req.adminId });
+});
+
 app.get('/api/enquiries', requireAdmin, async (req, res) => {
   try {
     const [rows] = await pool.execute(
