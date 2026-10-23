@@ -9,7 +9,12 @@ import cors from 'cors';
 
 const app = express();
 app.set('trust proxy', 4);
-app.get('/api/debug-ip', (req, res) => res.json({ ip: req.ip, xff: req.headers['x-forwarded-for'] }));
+app.get('/api/debug-ip', (req, res) => res.json({
+  ip: req.ip,
+  xff: req.headers['x-forwarded-for'],
+  realIp: req.headers['x-real-ip'],
+  vff: req.headers['x-vercel-forwarded-for'],
+}));
 app.use(helmet());
 const PORT = 3000;
 
