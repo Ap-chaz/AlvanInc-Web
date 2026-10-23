@@ -14,6 +14,9 @@ const PORT = 3000;
 const allowedOrigins = (process.env.CORS_ORIGINS ?? '').split(',').map((s) => s.trim()).filter(Boolean);
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
+// Admin forms (a project with its approach steps, a package with its features) can pass 10kb,
+// so signed-in editing gets a larger limit. The public enquiry form keeps the small one.
+app.use('/api/admin', express.json({ limit: '100kb' }));
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 app.use('/api/admin', (req, res, next) => {
@@ -133,7 +136,8 @@ app.get('/api/enquiries', requireAdmin, async (req, res) => {
 app.get('/api/faq', async (req, res) => {
   try {
     const [rows] = await pool.execute(
-      `SELECT g.id AS group_id, g.title, i.question, i.answer
+      `SELECT g.id AS group_id, g.title, g.sort_order AS group_sort,
+              i.id AS item_id, i.question, i.answer, i.sort_order AS item_sort
        FROM faq_groups g
        LEFT JOIN faq_items i ON i.group_id = g.id
        ORDER BY g.sort_order, g.id, i.sort_order, i.id`
@@ -141,8 +145,8 @@ app.get('/api/faq', async (req, res) => {
     const groups = [];
     for (const r of rows) {
       let g = groups.find((x) => x.id === r.group_id);
-      if (!g) { g = { id: r.group_id, group: r.title, items: [] }; groups.push(g); }
-      if (r.question) g.items.push({ q: r.question, a: r.answer });
+      if (!g) { g = { id: r.group_id, group: r.title, sortOrder: r.group_sort, items: [] }; groups.push(g); }
+      if (r.question) g.items.push({ id: r.item_id, q: r.question, a: r.answer, sortOrder: r.item_sort });
     }
     res.json({ ok: true, groups });
   } catch (err) {
@@ -154,7 +158,7 @@ app.get('/api/faq', async (req, res) => {
 app.get('/api/packages', async (req, res) => {
   try {
     const [rows] = await pool.execute(
-      `SELECT p.id, p.name, p.price_label, p.price_note, p.pitch, p.featured, f.feature
+      `SELECT p.id, p.name, p.price_label, p.price_note, p.pitch, p.featured, p.sort_order, f.feature
        FROM packages p
        LEFT JOIN package_features f ON f.package_id = p.id
        ORDER BY p.sort_order, p.id, f.sort_order, f.id`
@@ -165,7 +169,7 @@ app.get('/api/packages', async (req, res) => {
       if (!p) {
         p = {
           id: r.id, name: r.name, price: r.price_label, priceNote: r.price_note,
-          pitch: r.pitch, featured: Boolean(r.featured), features: []
+          pitch: r.pitch, featured: Boolean(r.featured), sortOrder: r.sort_order, features: []
         };
         packages.push(p);
       }
@@ -181,7 +185,7 @@ app.get('/api/packages', async (req, res) => {
 app.get('/api/services', async (req, res) => {
   try {
     const [rows] = await pool.execute(
-      'SELECT id, name, tier, body FROM services ORDER BY sort_order, id'
+      'SELECT id, name, tier, body, sort_order FROM services ORDER BY sort_order, id'
     );
     res.json({ ok: true, services: rows });
   } catch (err) {
@@ -208,7 +212,7 @@ app.get('/api/process', async (req, res) => {
 
 async function loadProjects(slug = null) {
   const [projects] = await pool.execute(
-    `SELECT p.id, p.slug, p.name, p.summary, p.brief, p.live_url, c.name AS category
+    `SELECT p.id, p.slug, p.name, p.summary, p.brief, p.live_url, p.category_id, p.sort_order, c.name AS category
      FROM projects p JOIN categories c ON c.id = p.category_id
      ${slug ? 'WHERE p.slug = ?' : ''}
      ORDER BY p.sort_order, p.id`,
@@ -231,6 +235,8 @@ async function loadProjects(slug = null) {
     slug: p.slug,
     name: p.name,
     category: p.category,
+    categoryId: p.category_id,
+    sortOrder: p.sort_order,
     summary: p.summary,
     brief: p.brief,
     liveUrl: p.live_url,
@@ -525,7 +531,7 @@ adminCrud('categories', 'categories', { name: 100 }, 'category');
 
 app.get('/api/categories', async (req, res) => {
   try {
-    const [rows] = await pool.execute('SELECT id, name FROM categories ORDER BY sort_order, id');
+    const [rows] = await pool.execute('SELECT id, name, sort_order FROM categories ORDER BY sort_order, id');
     res.json({ ok: true, categories: rows });
   } catch (err) {
     console.error('Load categories failed:', err.code);

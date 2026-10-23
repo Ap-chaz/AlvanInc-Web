@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useHead } from "@/lib/use-head";
 import { adminLogin, adminMe } from "@/lib/admin";
 import { Button } from "@/components/alvan/button";
 import { Eyebrow } from "@/components/alvan/ui";
-
-const inputCls =
-  "mt-2 w-full rounded-xl border border-white/15 bg-ink-soft px-4 py-3 text-base text-bone placeholder:text-graphite focus:border-brass";
+import { Wordmark } from "@/components/alvan/wordmark";
+import { inputCls } from "@/components/admin/ui";
 
 /** Turns a failed login into something the person at the keyboard can act on. */
 function messageFor(err) {
@@ -29,6 +28,7 @@ export default function AdminLogin() {
   const [checking, setChecking] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
 
@@ -65,7 +65,12 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-ink px-5 py-8 sm:px-8">
+    <div className="relative isolate flex min-h-screen flex-col overflow-hidden bg-ink px-5 py-8 [color-scheme:dark] sm:px-8">
+      {/* Soft brass glow behind the card; decorative only. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -z-10 -right-40 top-1/4 size-[36rem] rounded-full bg-brass/10 blur-[120px]"
+      />
       <Link
         to="/"
         className="label-mono inline-flex w-fit items-center gap-2 text-graphite transition-colors hover:text-brass"
@@ -75,6 +80,7 @@ export default function AdminLogin() {
 
       <main className="mx-auto grid w-full max-w-5xl flex-1 items-center gap-16 py-12 lg:grid-cols-2">
         <div>
+          <Wordmark className="mb-12 h-7" />
           <Eyebrow>Admin</Eyebrow>
           <h1 className="display-tight mt-6 text-4xl leading-[0.95] sm:text-5xl">
             Sign in to <span className="text-brass">manage</span> the site.
@@ -85,7 +91,7 @@ export default function AdminLogin() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-ink-soft p-8 sm:p-10">
+        <div className="relative rounded-3xl border border-white/10 bg-ink-soft p-8 shadow-2xl sm:p-10">
           {checking ? (
             <p className="label-mono text-graphite" role="status">
               Checking your session…
@@ -107,7 +113,7 @@ export default function AdminLogin() {
                   required
                   value={email}
                   onChange={(ev) => setEmail(ev.target.value)}
-                  className={inputCls}
+                  className={`${inputCls} mt-2`}
                   placeholder="you@alvaninc.com"
                   aria-invalid={Boolean(error)}
                 />
@@ -117,18 +123,29 @@ export default function AdminLogin() {
                 <label htmlFor="admin-password" className="label-mono text-graphite">
                   Password
                 </label>
-                <input
-                  id="admin-password"
-                  type="password"
-                  name="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(ev) => setPassword(ev.target.value)}
-                  className={inputCls}
-                  placeholder="••••••••••••"
-                  aria-invalid={Boolean(error)}
-                />
+                <div className="relative">
+                  <input
+                    id="admin-password"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    autoComplete="current-password"
+                    required
+                    value={password}
+                    onChange={(ev) => setPassword(ev.target.value)}
+                    className={`${inputCls} mt-2 pr-12`}
+                    placeholder="••••••••••••"
+                    aria-invalid={Boolean(error)}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-pressed={showPassword}
+                    className="absolute right-3 top-[calc(50%+0.25rem)] -translate-y-1/2 rounded-full p-1.5 text-graphite transition-colors hover:text-bone"
+                  >
+                    {showPassword ? <EyeOff className="size-4" aria-hidden="true" /> : <Eye className="size-4" aria-hidden="true" />}
+                  </button>
+                </div>
               </div>
 
               {error ? (

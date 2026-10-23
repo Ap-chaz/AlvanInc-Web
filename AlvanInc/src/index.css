@@ -419,3 +419,76 @@
     transition: none !important;
   }
 }
+
+/* ---------- Admin panel ---------- */
+
+@keyframes admin-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes admin-slide {
+  from {
+    opacity: 0;
+    transform: translateX(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes admin-slide-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes admin-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes admin-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@utility admin-fade {
+  animation: admin-fade 200ms ease-out both;
+}
+@utility admin-slide {
+  animation: admin-slide 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@utility admin-slide-left {
+  animation: admin-slide-left 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@utility admin-pop {
+  animation: admin-pop 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@utility admin-pulse {
+  animation: admin-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-fade,
+  .admin-slide,
+  .admin-slide-left,
+  .admin-pop,
+  .admin-pulse {
+    animation: none !important;
+  }
+}
