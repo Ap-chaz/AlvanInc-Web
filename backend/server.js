@@ -2,7 +2,7 @@ import helmet from 'helmet';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
-import rateLimit from 'express-rate-limit';
+import rateLimit, { ipKeyGenerator } from 'express-rate-limit';
 import express from 'express';
 import { pool } from './db.js';
 import cors from 'cors';
@@ -42,6 +42,8 @@ app.get('/api/health', (req, res) => {
 app.get('/api/health/db', async (req, res) => {
   try {
     const [rows] = await pool.execute('SELECT 1 AS ok');
+    // Behind Vercel, x-vercel-forwarded-for holds the real visitor address and can't be faked by the visitor.
+    const clientKey = (req) => ipKeyGenerator(req.headers['x-vercel-forwarded-for'] ?? req.ip);
     res.json({ ok: true, db: rows[0].ok });
   } catch (err) {
     console.error('DB check failed:', err.code);
@@ -49,7 +51,7 @@ app.get('/api/health/db', async (req, res) => {
   }
 });
 
-const enquiryLimiter = rateLimit({ windowMs: 60 * 60 * 1000, limit: 5, standardHeaders: true, legacyHeaders: false });
+const enquiryLimiter = rateLimit({ windowMs: 60 * 60 * 1000, limit: 5, standardHeaders: true, legacyHeaders: false, keyGenerator: clientKey });
 
 app.post('/api/enquiries', enquiryLimiter, async (req, res) => {
   const { name, email, company, selling, pkg, budget, timeline, _gotcha } = req.body ?? {};
@@ -80,7 +82,7 @@ app.post('/api/enquiries', enquiryLimiter, async (req, res) => {
 });
 
 const DUMMY_HASH = bcrypt.hashSync('not-a-real-password', 12);
-const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: true, legacyHeaders: false });
+const loginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: true, legacyHeaders: false, keyGenerator: clientKey });
 
 app.post('/api/admin/login', loginLimiter, async (req, res) => {
   const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
