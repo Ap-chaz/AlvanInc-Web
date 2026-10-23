@@ -51,6 +51,8 @@ app.get('/api/health/db', async (req, res) => {
   }
 });
 
+// Behind Vercel, x-vercel-forwarded-for holds the real visitor address and can't be faked by the visitor.
+const clientKey = (req) => ipKeyGenerator(req.headers['x-vercel-forwarded-for'] ?? req.ip);
 const enquiryLimiter = rateLimit({ windowMs: 60 * 60 * 1000, limit: 5, standardHeaders: true, legacyHeaders: false, keyGenerator: clientKey });
 
 app.post('/api/enquiries', enquiryLimiter, async (req, res) => {
