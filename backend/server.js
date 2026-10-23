@@ -55,7 +55,7 @@ app.post('/api/enquiries', enquiryLimiter, async (req, res) => {
   const n = clean(name, 100);
   const e = clean(email, 255);
 
-  if (!n || !e || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) {
+  if (!n || !e || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(e)) {
     return res.status(400).json({ ok: false, error: 'Name and a valid email are required' });
   }
 
