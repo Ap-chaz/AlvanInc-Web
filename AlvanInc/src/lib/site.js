@@ -2,7 +2,7 @@
  * Single source of truth for brand + contact details.
  * TODO(owner): every value marked TODO is a placeholder, replace with the real one.
  */
-const WHATSAPP = "254700123456"; // TODO(owner): real number, international format, digits only
+const WHATSAPP = "254714637437"; // TODO(owner): real number, international format, digits only
 const WHATSAPP_TEXT = "Hello! I'd like to talk about a project.";
 
 /** wa.me link with a prefilled message */
@@ -18,8 +18,8 @@ export const SITE = {
   tagline: "Websites and brands built for African founders.",
   url: "https://alvaninc.vercel.app", // TODO(owner): real domain
   email: "hello@alvaninc.com", // TODO(owner): real email
-  phone: "+254 700 123 456", // TODO(owner): real phone
-  phoneHref: "tel:+254700123456", // TODO(owner)
+  phone: "+254 714 637 437", // TODO(owner): real phone
+  phoneHref: "tel:+254714637437", // TODO(owner)
   city: "Nairobi, Kenya",
   location: "Nairobi · Remote across East Africa",
   availability: "Taking on new projects", // TODO(owner): keep only while true, or add a month, e.g. "Booking from November"
