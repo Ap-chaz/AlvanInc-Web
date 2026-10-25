@@ -29,7 +29,7 @@ export const SITE = {
   formEndpoint: API ? `${API}/api/enquiries` : "",
   socials: [
     // TODO(owner): replace with your real profile URLs
-    { label: "Instagram", href: "https://instagram.com/" },
+    { label: "Instagram", href: "https://www.instagram.com/alvaninc?psln=dzdnZ2M5bno5b2Vu" },
    // { label: "LinkedIn", href: "https://www.linkedin.com/" },
   ],
 };
