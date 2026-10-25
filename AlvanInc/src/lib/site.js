@@ -17,7 +17,7 @@ export const SITE = {
   name: "AlvanInc",
   tagline: "Websites and brands built for African founders.",
   url: "https://alvaninc.vercel.app", // TODO(owner): real domain
-  email: "hello@alvaninc.com", // TODO(owner): real email
+  email: "alvaninc.studio@gmail.com", // TODO(owner): real email
   phone: "+254 714 637 437", // TODO(owner): real phone
   phoneHref: "tel:+254714637437", // TODO(owner)
   city: "Nairobi, Kenya",
