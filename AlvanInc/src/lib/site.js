@@ -30,6 +30,6 @@ export const SITE = {
   socials: [
     // TODO(owner): replace with your real profile URLs
     { label: "Instagram", href: "https://instagram.com/" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/" },
+   // { label: "LinkedIn", href: "https://www.linkedin.com/" },
   ],
 };
