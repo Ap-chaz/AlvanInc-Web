@@ -16,7 +16,7 @@ const API = import.meta.env?.VITE_API_URL ?? "";
 export const SITE = {
   name: "AlvanInc",
   tagline: "Websites and brands built for African founders.",
-  url: "https://alvaninc.vercel.app", // TODO(owner): real domain
+  url: "https://www.alvaninc.co.ke",
   email: "alvaninc.studio@gmail.com", // TODO(owner): real email
   phone: "+254 714 637 437", // TODO(owner): real phone
   phoneHref: "tel:+254714637437", // TODO(owner)
