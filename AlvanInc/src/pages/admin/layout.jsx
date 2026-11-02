@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -25,19 +26,19 @@ const NAV = [
   {
     group: "Inbox",
     items: [
-      { to: "/admin", label: "Overview", icon: LayoutDashboard, end: true },
-      { to: "/admin/enquiries", label: "Enquiries", icon: Inbox, badge: true },
+      { to: ADMIN, label: "Overview", icon: LayoutDashboard, end: true },
+      { to: `${ADMIN}/enquiries`, label: "Enquiries", icon: Inbox, badge: true },
     ],
   },
   {
     group: "Website content",
     items: [
-      { to: "/admin/projects", label: "Projects", icon: FolderKanban },
-      { to: "/admin/services", label: "Services", icon: Wrench },
-      { to: "/admin/process", label: "Process", icon: ListOrdered },
-      { to: "/admin/packages", label: "Packages", icon: Package },
-      { to: "/admin/faq", label: "FAQ", icon: CircleHelp },
-      { to: "/admin/categories", label: "Categories", icon: Tags },
+      { to: `${ADMIN}/projects`, label: "Projects", icon: FolderKanban },
+      { to: `${ADMIN}/services`, label: "Services", icon: Wrench },
+      { to: `${ADMIN}/process`, label: "Process", icon: ListOrdered },
+      { to: `${ADMIN}/packages`, label: "Packages", icon: Package },
+      { to: `${ADMIN}/faq`, label: "FAQ", icon: CircleHelp },
+      { to: `${ADMIN}/categories`, label: "Categories", icon: Tags },
     ],
   },
 ];
@@ -46,7 +47,7 @@ function SidebarContent({ newCount, onSignOut }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 shrink-0 items-center gap-3 border-b border-white/10 px-6">
-        <Link to="/admin" aria-label="Admin home" className="rounded">
+        <Link to={ADMIN} aria-label="Admin home" className="rounded">
           <Wordmark className="h-5" />
         </Link>
         <span className="label-code rounded-full border border-brass/40 px-2 py-0.5 text-[0.5625rem] text-brass">
@@ -167,7 +168,7 @@ function Shell() {
     } catch {
       // The cookie may survive a failed logout, but leaving the page still hides the data.
     }
-    navigate("/admin/login", { replace: true });
+    navigate(`${ADMIN}/login`, { replace: true });
   };
 
   if (session.status !== "ok") {
@@ -204,13 +205,13 @@ function Shell() {
 
       {/* Mobile top bar */}
       <div className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-white/10 bg-ink/90 px-4 backdrop-blur lg:hidden">
-        <Link to="/admin" aria-label="Admin home">
+        <Link to={ADMIN} aria-label="Admin home">
           <Wordmark className="h-5" />
         </Link>
         <div className="flex items-center gap-2">
           {newCount > 0 ? (
             <Link
-              to="/admin/enquiries?status=new"
+              to={`${ADMIN}/enquiries?status=new`}
               className="label-mono rounded-full bg-brass px-2.5 py-1 text-[0.625rem] text-ink"
             >
               {newCount} new

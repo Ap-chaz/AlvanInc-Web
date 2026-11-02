@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Eye, EyeOff } from "lucide-react";
@@ -37,7 +38,7 @@ export default function AdminLogin() {
     let alive = true;
     adminMe()
       .then(() => {
-        if (alive) navigate("/admin", { replace: true });
+        if (alive) navigate(ADMIN, { replace: true });
       })
       .catch(() => {
         if (alive) setChecking(false);
@@ -57,7 +58,7 @@ export default function AdminLogin() {
     setSending(true);
     try {
       await adminLogin(email.trim(), password);
-      navigate("/admin", { replace: true });
+      navigate(ADMIN, { replace: true });
     } catch (err) {
       setError(messageFor(err));
       setSending(false);

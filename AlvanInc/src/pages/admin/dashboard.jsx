@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { Link } from "react-router-dom";
 import { ArrowRight, Inbox } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -145,7 +146,7 @@ function LatestEnquiries({ enquiries }) {
       <SectionTitle
         aside={
           <Link
-            to="/admin/enquiries"
+            to={`${ADMIN}/enquiries`}
             className="label-mono inline-flex items-center gap-1.5 text-brass transition-opacity hover:opacity-80"
           >
             View all <ArrowRight className="size-3.5" aria-hidden="true" />
@@ -163,7 +164,7 @@ function LatestEnquiries({ enquiries }) {
           {latest.map((e) => (
             <li key={e.id}>
               <Link
-                to={`/admin/enquiries?open=${e.id}`}
+                to={`${ADMIN}/enquiries?open=${e.id}`}
                 className="-mx-3 flex items-center gap-4 rounded-xl px-3 py-4 transition-colors hover:bg-white/[0.04]"
               >
                 <Avatar name={e.name} />
@@ -188,12 +189,12 @@ function LatestEnquiries({ enquiries }) {
 
 function ContentLinks({ counts }) {
   const rows = [
-    ["Projects", counts.projects, "/admin/projects"],
-    ["Services", counts.services, "/admin/services"],
-    ["Process steps", counts.process, "/admin/process"],
-    ["Packages", counts.packages, "/admin/packages"],
-    ["FAQ questions", counts.faqQuestions, "/admin/faq"],
-    ["Categories", counts.categories, "/admin/categories"],
+    ["Projects", counts.projects, `${ADMIN}/projects`],
+    ["Services", counts.services, `${ADMIN}/services`],
+    ["Process steps", counts.process, `${ADMIN}/process`],
+    ["Packages", counts.packages, `${ADMIN}/packages`],
+    ["FAQ questions", counts.faqQuestions, `${ADMIN}/faq`],
+    ["Categories", counts.categories, `${ADMIN}/categories`],
   ];
   return (
     <Card className="h-full p-6 sm:p-8">
@@ -237,7 +238,7 @@ export default function AdminDashboard() {
         title={`${greeting()}.`}
         description="Here's what's happening on the site and what's waiting for you."
         actions={
-          <Button to="/admin/enquiries" size="sm" icon="arrow">
+          <Button to={`${ADMIN}/enquiries`} size="sm" icon="arrow">
             Open inbox
           </Button>
         }
@@ -253,7 +254,7 @@ export default function AdminDashboard() {
               value={fresh}
               caption={fresh === 1 ? "1 new enquiry" : `${fresh} new enquiries`}
               accent={fresh > 0}
-              to="/admin/enquiries?status=new"
+              to={`${ADMIN}/enquiries?status=new`}
             />
             <StatCard label="This week" value={thisWeek} caption="Received in the last 7 days" />
             <StatCard label="Replied" value={replied} caption="Marked as replied" />

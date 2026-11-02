@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowDown, ArrowUp, Eye, ExternalLink, FolderKanban, Pencil, Plus, Trash2, X } from "lucide-react";
@@ -233,7 +234,7 @@ function Editor({ item, items, categories, onClose, onSaved }) {
           {noCategories ? (
             <div className="rounded-xl border border-brass/40 bg-brass/10 p-4 text-sm leading-relaxed text-bone">
               Projects need a category.{" "}
-              <Link to="/admin/categories" className="underline decoration-brass underline-offset-4 hover:text-brass">
+              <Link to={`${ADMIN}/categories`} className="underline decoration-brass underline-offset-4 hover:text-brass">
                 Add one first
               </Link>
               , then come back.

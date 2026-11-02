@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { adminEnquiries } from "@/lib/admin";
@@ -56,7 +57,7 @@ export function AdminProvider({ children }) {
 
   const handleAuth = useCallback((err) => {
     if (err?.status === 401) {
-      navigateRef.current("/admin/login", { replace: true });
+      navigateRef.current(`${ADMIN}/login`, { replace: true });
       return true;
     }
     return false;

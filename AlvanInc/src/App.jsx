@@ -1,3 +1,4 @@
+import { ADMIN } from "@/lib/admin-path";
 import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import ErrorBoundary from "@/components/error-boundary";
@@ -62,8 +63,8 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/work" element={<WorkIndex />} />
           <Route path="/work/:slug" element={<CaseStudy />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminLayout />}>
+          <Route path={`${ADMIN}/login`} element={<AdminLogin />} />
+          <Route path={ADMIN} element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="enquiries" element={<AdminEnquiries />} />
             <Route path="projects" element={<AdminProjects />} />
@@ -72,7 +73,7 @@ export default function App() {
             <Route path="packages" element={<AdminPackages />} />
             <Route path="faq" element={<AdminFaq />} />
             <Route path="categories" element={<AdminCategories />} />
-            <Route path="*" element={<Navigate to="/admin" replace />} />
+            <Route path="*" element={<Navigate to={ADMIN} replace />} />
           </Route>
           {Styleguide && <Route path="/styleguide" element={<Styleguide />} />}
           <Route path="*" element={<NotFound />} />
