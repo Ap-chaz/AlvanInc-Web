@@ -192,6 +192,19 @@ const PRINCIPLES = [
 // this list is empty. Shape: { text: "What they said", name: "Full name", role: "Role, Company" }
 const TESTIMONIALS = [];
 
+// TODO(owner): add open roles here. The Careers page shows "No open roles" while this list is empty.
+// Shape: { slug: "frontend-intern", title: "Frontend Intern", type: "Internship", location: "Nairobi / Remote", summary: "One or two sentences about the role." }
+const CAREERS = [
+    {
+    slug: "sales-partner",
+    title: "Sales Partner",
+    type: "Commission-based", // TODO(owner): confirm type
+    location: "Flexible / Remote", // TODO(owner): confirm location
+    summary:
+      "Introduce businesses and individuals who need a website to AlvanInc, and earn a commission on every payment we receive from the clients you bring. You work on your own schedule. We handle the pricing, the build and the final deal.",
+  },
+];
+
 const FAQ_GROUPS = [
   {
     group: "Scope & pricing",
@@ -247,6 +260,7 @@ const FAQ_GROUPS = [
 ];
 export {
   ALWAYS_INCLUDED,
+  CAREERS,
   CATEGORIES,
   CLIENT_INPUTS,
   FAQ_GROUPS,

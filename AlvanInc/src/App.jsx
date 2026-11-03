@@ -8,6 +8,7 @@ import Index from "@/pages/index";
 // fetched on first visit, so the first load only ships what the home page needs.
 const About = lazy(() => import("@/pages/about"));
 const Contact = lazy(() => import("@/pages/contact"));
+const Careers = lazy(() => import("@/pages/careers"));
 const Faq = lazy(() => import("@/pages/faq"));
 const Pricing = lazy(() => import("@/pages/pricing"));
 const Process = lazy(() => import("@/pages/process"));
@@ -22,6 +23,7 @@ const AdminLogin = lazy(() => import("@/pages/admin/login"));
 const AdminLayout = lazy(() => import("@/pages/admin/layout"));
 const AdminDashboard = lazy(() => import("@/pages/admin/dashboard"));
 const AdminEnquiries = lazy(() => import("@/pages/admin/enquiries"));
+const AdminApplications = lazy(() => import("@/pages/admin/applications"));
 const AdminProjects = lazy(() => import("@/pages/admin/projects"));
 const AdminPackages = lazy(() => import("@/pages/admin/packages"));
 const AdminFaq = lazy(() => import("@/pages/admin/faq"));
@@ -57,6 +59,7 @@ export default function App() {
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/careers" element={<Careers />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/process" element={<Process />} />
@@ -67,6 +70,7 @@ export default function App() {
           <Route path={ADMIN} element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
             <Route path="enquiries" element={<AdminEnquiries />} />
+            <Route path="applications" element={<AdminApplications />} />
             <Route path="projects" element={<AdminProjects />} />
             <Route path="services" element={<AdminServices />} />
             <Route path="process" element={<AdminProcess />} />

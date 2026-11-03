@@ -10,5 +10,6 @@ export const NAV_PRIMARY = [
 export const NAV_ALL = [
   ...NAV_PRIMARY,
   { label: "FAQ", to: "/faq" },
+  { label: "Careers", to: "/careers" },
   { label: "Contact", to: "/contact" },
 ];

@@ -6,6 +6,7 @@ import {
   ExternalLink,
   FolderKanban,
   Inbox,
+  Briefcase,
   LayoutDashboard,
   ListOrdered,
   LogOut,
@@ -28,6 +29,7 @@ const NAV = [
     items: [
       { to: ADMIN, label: "Overview", icon: LayoutDashboard, end: true },
       { to: `${ADMIN}/enquiries`, label: "Enquiries", icon: Inbox, badge: true },
+      { to: `${ADMIN}/applications`, label: "Applications", icon: Briefcase },
     ],
   },
   {

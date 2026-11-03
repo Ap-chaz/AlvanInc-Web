@@ -22,7 +22,7 @@ function SiteFooter({ cta = true }) {
   // Only real projects appear in the footer (template ones are flagged placeholder: true)
   const { data: projects } = useApi("/api/projects", (json) => json.projects, PROJECTS);
   const work = projects.filter((p) => !p.placeholder).slice(0, 4);
-  const studio = NAV_ALL.filter((n) => ["Services", "Pricing", "Process", "About", "FAQ"].includes(n.label));
+  const studio = NAV_ALL.filter((n) => ["Services", "Pricing", "Process", "About", "FAQ", "Careers"].includes(n.label));
 
   return (
     <footer id="contact-cta" className="bg-ink px-5 pb-10 pt-24 sm:px-8 sm:pt-32">

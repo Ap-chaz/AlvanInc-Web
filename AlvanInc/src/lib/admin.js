@@ -65,6 +65,19 @@ export const setEnquiryStatus = (id, status) =>
 export const deleteEnquiry = (id) => adminFetch(`/api/admin/enquiries/${id}`, { method: "DELETE" });
 
 /* ------------------------------------------------------------------------------------------
+ * Applications (Careers form)
+ * ---------------------------------------------------------------------------------------- */
+
+export const APPLICATION_STATUSES = ["new", "reviewing", "shortlisted", "rejected"];
+
+export const adminApplications = () => adminFetch("/api/applications");
+
+export const setApplicationStatus = (id, status) =>
+  adminFetch(`/api/admin/applications/${id}/status`, { method: "PUT", body: JSON.stringify({ status }) });
+
+export const deleteApplication = (id) => adminFetch(`/api/admin/applications/${id}`, { method: "DELETE" });
+
+/* ------------------------------------------------------------------------------------------
  * Content writes. Every editable table has the same three verbs, so one factory builds them.
  * ---------------------------------------------------------------------------------------- */
 

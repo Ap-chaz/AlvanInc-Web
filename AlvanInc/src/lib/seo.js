@@ -86,6 +86,16 @@ export const PAGES = [
     changefreq: "monthly",
     priority: "0.6",
   },
+
+  {
+    path: "/careers",
+    title: "Careers — join AlvanInc, a web studio in Nairobi",
+    description:
+      "See open roles at AlvanInc, an independent web studio in Nairobi. Internships and full-time roles for people who like shipping real work.",
+    changefreq: "monthly",
+    priority: "0.5",
+  },
+
   {
     path: "/contact",
     title: "Contact — start a fixed-price project | AlvanInc",
