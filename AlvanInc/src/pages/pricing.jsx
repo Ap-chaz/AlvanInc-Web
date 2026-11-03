@@ -6,6 +6,7 @@ import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { PageHeader, Eyebrow, Tag, BrassButton, GhostButton } from "@/components/alvan/ui";
 import { TIERS } from "@/lib/alvan-data";
+import { PriceCalculator } from "@/components/alvan/price-calculator";
 const PRICING_FAQ = [
   {
     q: "What's not included?",
@@ -86,7 +87,9 @@ export default function Pricing() {
         </Reveal>
       </section>
 
-      <section className="surface-light-deep px-5 py-24 sm:px-8 sm:py-32">
+      <PriceCalculator />
+
+      <section className="surface-light px-5 py-24 sm:px-8 sm:py-32">
         <Reveal>
           <Eyebrow>Before you ask</Eyebrow>
         </Reveal>

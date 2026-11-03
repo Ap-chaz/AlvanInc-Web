@@ -1,6 +1,7 @@
 import { useHead } from "@/lib/use-head";
 import { SEO } from "@/lib/seo";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { PageShell } from "@/components/alvan/page-shell";
 import { Reveal } from "@/components/alvan/reveal";
 import { Button } from "@/components/alvan/button";
@@ -23,6 +24,13 @@ function validate(v) {
   if (!v.pkg) e.pkg = "Pick a package, or choose “Not sure” and we'll advise.";
   return e;
 }
+
+// The calculator estimate travels inside the "selling" text so no backend change is needed.
+const withEstimate = (v, est) => {
+  if (!est?.text) return v;
+  const note = `\n\n--- ${est.text}`;
+  return { ...v, selling: `${v.selling.slice(0, 2000 - note.length)}${note}` };
+};
 
 const buildBrief = (v) =>
   [
@@ -50,10 +58,15 @@ const waHref = (v) => whatsappLink(`Hello AlvanInc, I'd like to start a project.
  */
 export default function Contact() {
   useHead(SEO["/contact"]);
-  const [values, setValues] = useState(EMPTY);
+  const location = useLocation();
+  const estimate = location.state?.estimate ?? null;
+  const [values, setValues] = useState(() =>
+    estimate ? { ...EMPTY, pkg: estimate.pkg, budget: estimate.budget } : EMPTY,
+  );
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
   const [honey, setHoney] = useState("");
+  const outgoing = withEstimate(values, estimate);
   const set = (k) => (ev) => setValues((v) => ({ ...v, [k]: ev.target.value }));
 
   const onSubmit = async (e) => {
@@ -66,7 +79,7 @@ export default function Contact() {
       return;
     }
     if (!SITE.formEndpoint) {
-      window.location.href = mailtoHref(values);
+      window.location.href = mailtoHref(outgoing);
       setStatus("fallback");
       return;
     }
@@ -75,7 +88,7 @@ export default function Contact() {
       const res = await fetch(SITE.formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...values, _subject: `Project enquiry from ${values.name}` }),
+        body: JSON.stringify({ ...outgoing, _subject: `Project enquiry from ${values.name}` }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setStatus("sent");
@@ -119,7 +132,7 @@ export default function Contact() {
                     WhatsApp us and say so up front.
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-6">
-                    <Button href={waHref(values)} variant="secondary" tone="light">
+                    <Button href={waHref(outgoing)} variant="secondary" tone="light">
                       WhatsApp us
                     </Button>
                     <button type="button" onClick={reset} className="link-underline text-black">
@@ -142,10 +155,10 @@ export default function Contact() {
                     there to finish. Nothing has been sent yet. No email app? Use WhatsApp instead.
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-4">
-                    <Button href={mailtoHref(values)} variant="primary" tone="light">
+                    <Button href={mailtoHref(outgoing)} variant="primary" tone="light">
                       Open email again
                     </Button>
-                    <Button href={waHref(values)} variant="secondary" tone="light">
+                    <Button href={waHref(outgoing)} variant="secondary" tone="light">
                       Send on WhatsApp
                     </Button>
                   </div>
@@ -162,6 +175,18 @@ export default function Contact() {
 
             {(status === "idle" || status === "sending" || status === "error") && (
               <form noValidate onSubmit={onSubmit} className="grid gap-8 sm:grid-cols-2">
+                {estimate && (
+                  <div className="rounded-2xl border border-brass/50 bg-bone-deep p-6 sm:col-span-2">
+                    <p className="label-mono text-black/65">Your estimate from the calculator</p>
+                    <p className="display-tight mt-3 text-2xl">
+                      KES {estimate.low.toLocaleString("en-KE")} – {estimate.high.toLocaleString("en-KE")}
+                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-black/65">
+                      We will send your choices along with your message, so we start the call already
+                      knowing what you want.
+                    </p>
+                  </div>
+                )}
                 <Field label="Name" error={errors.name}>
                   <input
                     className={inputCls}
@@ -259,12 +284,12 @@ export default function Contact() {
                     >
                       Something went wrong sending that. Your details are still here: try again, or
                       send it by{" "}
-                      <a href={mailtoHref(values)} className="underline">
+                      <a href={mailtoHref(outgoing)} className="underline">
                         email
                       </a>{" "}
                       or{" "}
                       <a
-                        href={waHref(values)}
+                        href={waHref(outgoing)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline"
